@@ -49,23 +49,23 @@ include('include/header.php'); ?>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <?= $form->field($model, 'name')->textInput(['class' => "form-control",'placeholder'=>"Name"]) ?>
+                                        <?= $form->field($model, 'name')->textInput(['class' => "form-control",'placeholder'=>"Name"])->label('') ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <?= $form->field($model, 'email')->textInput(['class' => "form-control",'placeholder'=>"Email Id"]) ?>
+                                        <?= $form->field($model, 'email')->textInput(['class' => "form-control",'placeholder'=>"Email Id"])->label('') ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <?= $form->field($model, 'subject')->textInput(['class' => "form-control",'placeholder'=>"Subject"]) ?>
+                                        <?= $form->field($model, 'subject')->textInput(['class' => "form-control",'placeholder'=>"Subject"])->label('') ?>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <?= $form->field($model, 'message')->textarea(['rows' => 7 ,'class' => "form-control",'placeholder'=>"Message"]) ?>
+                                        <?= $form->field($model, 'message')->textarea(['rows' => 7 ,'class' => "form-control",'placeholder'=>"Message"])->label('') ?>
                                     </div>
                                 </div>
                             </div>

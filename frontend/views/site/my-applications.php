@@ -40,8 +40,8 @@ use yii\helpers\Html;
 							
 					<ul class="user-menu">
 						<li><a href="index.php?r=site/my-profile">Profile</a></li>
-						<li class="active"><a href="index.php?r=site/my-ads">My ads</a></li>
-						<li><a href="index.php?r=site/my-applications">Applications</a></li>
+						<li ><a href="index.php?r=site/my-ads">My ads</a></li>
+						<li class="active"><a href="index.php?r=site/my-applications">Applications</a></li>
 						<li><a href="archived-ads.html">Ads Preferences</a></li>
 						<li><a href="index.php?r=site/my-wishlist">Whishlist</a></li>
 					</ul>

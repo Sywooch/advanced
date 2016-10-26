@@ -2,7 +2,7 @@
 
  <script type="text/javascript">
   
-  function submitinfo(id,sub){
+  function submitinfo(id,sub){ 
   	values = {id:id,sub:sub};
   	console.log(values);
     $.ajax({

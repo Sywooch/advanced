@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\User;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -15,7 +16,10 @@ use frontend\models\ContactForm;
 use common\models\Categories;
 use frontend\models\AskDubarji;
 use frontend\models\Suggestions;
-
+use frontend\models\Advertisement;
+use yii\data\Pagination;
+use frontend\models\Wishlists;
+ 
 /**
  * Site controller
  */
@@ -78,7 +82,11 @@ class SiteController extends Controller
         $query =Categories::find()->andFilterWhere([ 'parent_category_id'=> 0]);
         $categories  = $query->all();
         
-        return $this->render('index',['categories'=> $categories , 'ads'=>$ads]);
+
+        $query = "SELECT * from advertisement ORDER BY advertisement_id Desc limit 4 ";
+        $dbCommand = Yii::$app->db->createCommand($query);
+        $ads = $dbCommand->queryAll();
+        return $this->render('index',['categories'=> $categories , 'advert'=>$ads]);
     }
 
     /**
@@ -145,7 +153,7 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionAboutUs()
     {
         return $this->render('about');
     }
@@ -236,15 +244,65 @@ class SiteController extends Controller
 
     public function actionMyProfile()
     {
+        $model = yii::$app->user->identity;
+        $model1 = yii::$app->user->identity;
         $user = $this->getUser();
-        return $this->render('my-profile',['user'=>$user]);
-    }
+        $loadpost = $model->load(Yii::$app->request->post());
+        $loadpost1 = $model1->load(Yii::$app->request->post());
 
+        if ($loadpost && $model->validate())
+        {
+            $model->save(false);
+            echo "string";
+        }
+        if($loadpost1 && $model1->validate())
+        {
+            $model1->password = $model1->newPassword;
+            $model1->save(false);
+            // yii::$app->session->setFlash('success','you have successfully changed your password');
+            return $this->refresh();
+        }
+        else 
+        {
+            return $this->render('my-profile',
+            ['model1'=>$model1,'model'=>$model]);
+        }
+    }
+    
 
     public function actionMyAds(){
         $user = $this->getUser();
-        return $this->render('my-ads',['user'=>$user]);
+        $id = $user['id'];
+        $query = Advertisement::find()->where(['user_id'=>$id]);
+        $count = $query->count();
+        $pagination = new Pagination(['totalCount' => $count,'defaultPageSize' => 4]);
+        $my_ads = $query->offset($pagination->offset)
+        ->limit($pagination->limit)
+        ->all();
+        return $this->render('my-ads',['user'=>$user,'count'=>$count,'my_ads'=> $my_ads ,'pagination'=>$pagination]);
     }
+
+
+    public function actionMyWishlist(){
+        $user = $this->getUser();
+        $id = $user['id'];
+        $query = Wishlists::find()->where(['user_id'=>$id]);
+        $count = $query->count();
+        $pagination = new Pagination(['totalCount' => $count,'defaultPageSize' => 4]);
+        $my_wishlist = $query->offset($pagination->offset)
+        ->limit($pagination->limit)
+        ->all();
+        return $this->render('my-wishlist',['user'=>$user,'count'=>$count,'my_wishlist'=> $my_wishlist,'pagination'=>$pagination]);
+    }
+
+
+    public function actionMyApplications(){
+        $user = $this->getUser();
+        $id = $user['id'];
+
+        return $this->render('my-applications',['user'=>$user,'count'=>$count,'my_wishlist'=> $my_wishlist,'pagination'=>$pagination]);
+    }
+
 
     public function actionAskDubarji(){
         $model = new AskDubarji();
@@ -271,8 +329,44 @@ class SiteController extends Controller
             ]);
         }
     }
+
+    public function actionContactUs(){
+        $model = new Contact();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+ 
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('contact-us', [
+                'model' => $model,
+            ]);
+        }
+    }
     public function actionDonate(){
         return $this->render('donate');
+    }
+
+    public function actionFaqs(){
+        return $this->render('faqs');
+    }
+
+    public function actionMission(){
+        return $this->render('mission');
+    }
+
+    public function actionVision(){
+        return $this->render('vision');
+    }
+
+    protected function findModel()
+    {
+        $session = Yii::$app->session;
+        $id = $session->get('id');
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 }

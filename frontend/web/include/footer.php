@@ -19,10 +19,11 @@
 						<div class="footer-widget">
 							<h3>QUICK LINKS</h3>
 							<ul>
-								<li><a href="#">Expatriate Guide</a></li>
-								<li><a href="#">Initiatives</a></li>
+								
 								<li><a href="index.php?r=site/about-us">About Us</a></li>
 								<li><a href="index.php?r=site/contact-us">Contact Us</a></li>
+								<li><a href="index.php?r=site/mission">Our Mission</a></li>
+								<li><a href="index.php?r=site/vision">Our vision</a></li>
 							</ul>
 						</div>
 					</div><!-- footer-widget -->
@@ -41,11 +42,11 @@
 						<div class="footer-widget">
 							<h3>SUPPORT</h3>
 							<ul>
-								<li><a href="index.php?r=site/faq">FAQs</a></li>
+								<li><a href="index.php?r=site/faqs">FAQs</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Ask Dubarji</a></li>
-								<li><a href="#">Suggestions</a></li>
+								<li><a href="index.php?r=site/ask-dubarji">Ask Dubarji</a></li>
+								<li><a href="index.php?r=site/suggestions">Suggestions</a></li>
 							</ul>
 						</div>
 					</div><!-- footer-widget -->

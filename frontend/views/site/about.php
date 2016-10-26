@@ -30,14 +30,15 @@
 						<!-- about-text -->
 						<div class="col-md-6">
 							<div class="about-text">
-								<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do</h3>
+								<h3>Dubarah is a online network, focuses on understand problems and needs of individuals, and use network outreach to find a proper solution.</h3>
 								<!-- description-paragraph -->
 								<div class="description-paragraph">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+									<p>Dubarah is a online network, based on understanding the problems and needs of the individuals to create the best solutions for them, through a shared online platform which links those who has a problem with others who has the solution.
+									The need to establish Dubarah emerged due to the ongoing war in Syria, as many Syrians were forced to leave Syria and take decision of asylum and immigration in countries they have never visited, it was a must to have a network which addresses their needs and provide them with help & support in those countries to be able to continue their lives.</p>
 								</div><!-- description-paragraph -->
 								
 								<!-- description-paragraph -->
-								<div class="description-paragraph"><p> velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p></div> 
+								<div class="description-paragraph"><p>Dubarah was awarded Ashoka fellowship through its founder Ahmad ِEdilBi, the first Syrian awarded with Ashoka fellowship, in addition to the fellowship of Royal Society for the encouragement of Arts, Manufactures and Commerce (RSA)</p></div> 
 							</div><!-- description-paragraph -->
 						</div><!-- about-text -->
 					</div>

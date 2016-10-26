@@ -1,5 +1,12 @@
 <?php
 use frontend\models\Country;
+use frontend\models\Advertisement;
+use yii\web\Linkable;
+use yii\widgets\LinkPager;
+use yii\base\Configurable;
+
+use yii\data\Pagination;
+
  include('include/header.php'); ?>
 	<!-- main -->
 	<section id="main" class="clearfix category-page">
@@ -41,7 +48,8 @@ use frontend\models\Country;
 											<ul>
 											<?php 
 											foreach ($SubCategories as $sub) {
-											echo '<li><a href="#">&raquo;'.$sub['english_name'].'<span>(129)</span></a></li>';
+												$count = Advertisement::find()->where(['category_id' => $sub->category_id])->count();
+											echo '<li><a href="#">&raquo;'.$sub['english_name'].'<span>('.$count.')</span></a></li>';
 											}?>
 											</ul>
 
@@ -135,8 +143,15 @@ use frontend\models\Country;
 
 
 							<?php 
-							foreach ($advertisement as $ads) {
-								foreach ($ads as $ad) {		
+								foreach ($advertisement as $ads) {
+									$count = $ads->count();
+						            $pagination = new Pagination(['defaultPageSize' => 4 ,
+						                'totalCount' => $count]);
+						            $ads = $ads->offset($pagination->offset)
+						            ->limit($pagination->limit)
+						            ->all();
+																
+								foreach ($ads as $ad) {	
 								$country = Country::find()
 						        ->where(['country_id' => $ad['country']])
 						        ->one();
@@ -173,12 +188,17 @@ use frontend\models\Country;
 							</div><!-- ad-item -->';
 
 					               }
-						        }
-
+					               echo LinkPager::widget([
+								    'pagination' => $pagination,
+								]);
+					           }
+						        
+							
 
 							?> 
+
 							<!-- pagination  -->
-							<div class="text-center">
+							<!-- <div class="text-center">
 								<ul   class="pagination ">
 									<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
 									<li class="active" ><a href="#">1</a></li>
@@ -193,7 +213,7 @@ use frontend\models\Country;
 									<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>			
 								</ul>
 								<div id='page_navigation'></div>
-							</div><!-- pagination  -->	
+							</div> --><!-- pagination  -->	
 												
 						</div>
 					</div><!-- recommended-ads -->

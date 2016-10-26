@@ -139,21 +139,49 @@ document.getElementById('ifBoth').style.display = 'block';
 										<label class="col-sm-3 label-title">Photos for your ad <span>(This will be your cover photo )</span> </label>
 										<div class="col-sm-9">
 											<h5><i class="fa fa-upload" aria-hidden="true"></i>Select Files to Upload / Drag and Drop Files <span>You can add multiple images.</span></h5>
-											<div class="upload-section">
-												<label class="upload-image" for="upload-image-one">
-													<input type="file" name="file1" id="upload-image-one">
-												</label>										
+											<div class="upload-section" id="container">
+												<label class="upload-image">
+												<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
-												<label class="upload-image" for="upload-image-two">
-													<input type="file" name="file2" id="upload-image-two">
-												</label>											
-												<label class="upload-image" for="upload-image-three">
-													<input type="file" name="file3" id="upload-image-three">
-												</label>										
+    											<?= $form->field($upload, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*',
+    											'id' => 'files'])->label('') ?>
+    											<output id="list"></output>
+<!-- <input type="file" id="files" name="files[]" multiple />
+<output id="list"></output> -->
 
-												<label class="upload-image" for="upload-imagefour">
-													<input type="file" id="upload-imagefour" name="file4">
-												</label>
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+          reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<label class="upload-second"><img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/></label>'].join('');
+          document.getElementById('container').insertBefore(span, null);
+            document.getElementById('files').className = "";
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>											</label>										
 											</div>	
 										</div>
 									</div>
@@ -260,7 +288,7 @@ document.getElementById('ifBoth').style.display = 'block';
 													}
 										}
 									?>
-									</form>
+								
 									
 								</div><!-- section -->
 
@@ -318,6 +346,8 @@ document.getElementById('ifBoth').style.display = 'block';
 								</div><!-- section -->
 								
 								<?php ActiveForm::end(); ?>
+								<?php ActiveForm::end(); ?>
+
 							
 							</fieldset>	
 							</form>

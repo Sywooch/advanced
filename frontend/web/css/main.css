@@ -2632,22 +2632,22 @@ transform: scale(1.05) rotate(2deg);
 	margin-bottom:15px;
 }
 
-.profile a.btn {
-    background-color: #00a651;
+.profile button.btn {
+    background-color: #e7412c;
     color: #fff;
     padding: 6px 26px 7px;
-    border: 1px solid #00a651;	
+    border: 1px solid #e7412c;	
     margin: 9px 0 0;
     margin-bottom: 30px;
 }
 
-.profile a.btn.cancle {
+.profile button.btn.cancle {
 	background-color: #dbdbdb;
 	border: 1px solid #dbdbdb;
 	margin-left: 10px;
 }
 
-.profile a.btn:hover {
+.profile button.btn:hover {
 	background-color: transparent;
 	color: #00a651;
 	border: 1px solid #00a651;

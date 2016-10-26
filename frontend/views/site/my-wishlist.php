@@ -2,6 +2,7 @@
 use yii\widgets\LinkPager;
 use common\models\Categories;
 use yii\helpers\Html;
+use frontend\models\Advertisement;
 
 ?>
 
@@ -15,7 +16,7 @@ use yii\helpers\Html;
 					<li><a href="index.php">Home</a></li>
 					<li>My Account</li>
 				</ol><!-- breadcrumb -->						
-				<h2 class="title">My Ads</h2>
+				<h2 class="title">My Wishlist</h2>
 			</div><!-- banner -->
 
 			<div class="ad-profile section">	
@@ -30,7 +31,7 @@ use yii\helpers\Html;
 
 						<div class="favorites-user">
 							<div class="my-ads">
-								<a href="index.php?r=site/my-ads"><?php echo $count; ?><small>My ADS</small></a>
+								<a href="index.php?r=site/my-wishlist"><?php echo $count; ?><small>My Wishlist</small></a>
 							</div>
 							<div class="favorites">
 								<a href="#">18<small>Favorites</small></a>
@@ -39,11 +40,11 @@ use yii\helpers\Html;
 					</div><!-- user-profile -->
 							
 					<ul class="user-menu">
-						<li><a href="index.php?r=site/my-profile">Profile</a></li>
-						<li class="active"><a href="index.php?r=site/my-ads">My ads</a></li>
-						<li><a href="index.php?r=site/my-applications">Applications</a></li>
+						<li ><a href="index.php?r=site/my-profile">Profile</a></li>
+						<li ><a href="index.php?r=site/my-ads">My ads</a></li>
+						<li><a href="favourite-ads.html">Applications</a></li>
 						<li><a href="archived-ads.html">Ads Preferences</a></li>
-						<li><a href="index.php?r=site/my-wishlist">Whishlist</a></li>
+						<li class="active"><a href="index.php?r=site/my-wishlist">Whishlist</a></li>
 					</ul>
 			
 			</div><!-- ad-profile -->			
@@ -52,9 +53,13 @@ use yii\helpers\Html;
 				<div class="row">
 					<div class="col-sm-8">
 						<div class="my-ads section">
-							<h2>My ads</h2>
+							<h2>My Wishlist</h2>
 							<?php 
-							foreach ($my_ads as $ad) {
+							foreach ($my_wishlist as $list) {
+								$advertisement = $list['advertisement_id'];
+								$query = "SELECT * from advertisement where advertisement_id =$advertisement";
+								$dbCommand = Yii::$app->db->createCommand($query);
+        						$ad = $dbCommand->queryOne(); 
 								$subCat = Categories::find()->where(['category_id'=>$ad['category_id']])->one();
 								
 								$parent = $subCat['parent_category_id'];
@@ -93,7 +98,7 @@ use yii\helpers\Html;
 										</div>										
 										<!-- item-info-right -->
 										<div class="user-option pull-right">
-											<a class="edit-item" href="index.php?r=advertisement/edit&id='.$ad['advertisement_id'].' " data-toggle="tooltip" data-placement="top" title="Edit this ad">
+											<a class="edit-item" href="index.php?r=advertisement/update&id='.$ad['advertisement_id'].' " data-toggle="tooltip" data-placement="top" title="Edit this ad">
 											<i class="fa fa-pencil"></i></a>
 											';
 

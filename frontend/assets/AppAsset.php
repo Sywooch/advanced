@@ -35,6 +35,7 @@ class AppAsset extends AssetBundle
     'js/owl.carousel.min.js',
     'js/smoothscroll.min.js',
     'js/price-range.js',
+    'js/main.js',
     //'js/magnific-popup.min.js',
     //'js/switcher.js',
     ];

@@ -63,4 +63,31 @@ class SignupForm extends Model
         
         return $user->save() ? $user : null;
     }
+
+    public function findUser($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function update($id)
+    {
+        if (!$this->validate()) {
+            return null;
+        }
+        $user = $this->findUser($id);
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+        $user->mobile = $this->mobile;
+        $user->place = $this->place;
+        
+        return $user->save() ? $user : null;
+    }
+
+
 }
