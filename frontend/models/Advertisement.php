@@ -40,7 +40,7 @@ class Advertisement extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
+        return [ 
             [['user_id', 'category_id', 'category_related', 'title', 'description', 'country', 'city'],'required'],
             [['user_id', 'category_id'], 'integer'],
             [['category_related', 'description'], 'string'],

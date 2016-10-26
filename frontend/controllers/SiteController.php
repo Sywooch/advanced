@@ -250,12 +250,12 @@ class SiteController extends Controller
         $loadpost = $model->load(Yii::$app->request->post());
         $loadpost1 = $model1->load(Yii::$app->request->post());
 
-        if ($loadpost && $model->validate())
+        if ($model->load(Yii::$app->request->post()))
         {
             $model->save(false);
-            echo "string";
+            return $this->refresh();
         }
-        if($loadpost1 && $model1->validate())
+      if($loadpost1 && $model1->validate())
         {
             $model1->password = $model1->newPassword;
             $model1->save(false);

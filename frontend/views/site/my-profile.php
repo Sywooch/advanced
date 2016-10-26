@@ -79,10 +79,10 @@ $Wcount=Wishlists::find()->where(['user_id'=>$model->id])->count();
     							 <?= $form->field($model, 'place')->dropDownList(['Damascus, Syria'=>'Damascus, Syria',
 				                    'London UK'=>'London UK','Newyork, USA'=>'Newyork, USA','Seoul, Korea'=>'Seoul, Korea'],['prompt' => 'Select Country'])->label('') ?>
 				                 </div>
-				                 <div class="form-group">
+				                 <!-- <div class="form-group">
 								<label>Confrim your password please :</label>
     							 <?= $form->field($model, 'currentPassword')->passwordInput()->label('') ?>
-				                 </div>
+				                 </div> -->
 				                 <!-- preferences-settings -->
 				                 <div class="preferences-settings section">
 								<h2>Preferences Settings</h2>
