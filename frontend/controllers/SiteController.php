@@ -234,11 +234,7 @@ class SiteController extends Controller
 
     public function getUser()
     {
-        $session = Yii::$app->session;
-        $session_id = $session->get('id');
-        $query = "SELECT * from user where id=$session_id";
-        $dbCommand = Yii::$app->db->createCommand($query);
-        $user = $dbCommand->queryOne();
+        $user = Yii::$app->user->identity;
         return $user;
     }
 
@@ -272,7 +268,7 @@ class SiteController extends Controller
 
     public function actionMyAds(){
         $user = $this->getUser();
-        $id = $user['id'];
+        $id = $user->id;
         $query = Advertisement::find()->where(['user_id'=>$id]);
         $count = $query->count();
         $pagination = new Pagination(['totalCount' => $count,'defaultPageSize' => 4]);
@@ -285,7 +281,7 @@ class SiteController extends Controller
 
     public function actionMyWishlist(){
         $user = $this->getUser();
-        $id = $user['id'];
+        $id = $user->id;
         $query = Wishlists::find()->where(['user_id'=>$id]);
         $count = $query->count();
         $pagination = new Pagination(['totalCount' => $count,'defaultPageSize' => 4]);
@@ -298,7 +294,7 @@ class SiteController extends Controller
 
     public function actionMyApplications(){
         $user = $this->getUser();
-        $id = $user['id'];
+        $id = $user->id;
 
         return $this->render('my-applications',['user'=>$user,'count'=>$count,'my_wishlist'=> $my_wishlist,'pagination'=>$pagination]);
     }
@@ -358,15 +354,5 @@ class SiteController extends Controller
         return $this->render('vision');
     }
 
-    protected function findModel()
-    {
-        $session = Yii::$app->session;
-        $id = $session->get('id');
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
 
 }

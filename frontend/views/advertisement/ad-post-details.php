@@ -143,7 +143,7 @@ document.getElementById('ifBoth').style.display = 'block';
 												<label class="upload-image">
 												<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
-    											<?= $form->field($upload, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*',
+    											<?= $form->field($upload, 'imageFiles[]')->fileInput(['multiple'=>'multiple', 'accept' => 'image/*',
     											'id' => 'files'])->label('') ?>
     											<output id="list"></output>
 <!-- <input type="file" id="files" name="files[]" multiple />

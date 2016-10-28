@@ -24,7 +24,7 @@ use yii\helpers\Html;
 							<img src="images/user.jpg" alt="User Images" class="img-responsive">
 						</div>
 						<div class="user">
-							<h2>Hello, <a href="#"><?php echo $user['username']; ?></a></h2>
+							<h2>Hello, <a href="#"><?php echo $user->username; ?></a></h2>
 							<h5>You last logged in at: 14-01-2016 6:40 AM [ USA time (GMT + 6:00hrs)]</h5>
 						</div>
 

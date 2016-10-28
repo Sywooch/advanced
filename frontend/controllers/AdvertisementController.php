@@ -82,7 +82,9 @@ class AdvertisementController extends Controller
        $session = Yii::$app->session; 
        $category = $session->get('category_id');
        $sub = $session->get('subcategory_id');
-       $my_id = $session->get('id');
+      // $my_id = $session->get('id');
+        $user = Yii::$app->user->identity;
+        $my_id = $user->getId();
        $q= "SELECT * from categories where category_id = $category";
                                                         $dbCommand = Yii::$app->db->createCommand($q);
                                                         $categoryname= $dbCommand->queryOne();
