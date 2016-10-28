@@ -1,4 +1,6 @@
-<?php include('include/header.php'); ?>
+<?php include('include/header.php');
+use frontend\models\Country;
+use frontend\models\Advertisement; ?>
 
 	<!-- main -->
 	<section id="main" class="clearfix category-page">
@@ -79,9 +81,10 @@
 													if ($count != 0){
 														foreach ($SubCategories as $subCategory)
 														{
+															$count = \frontend\models\Advertisement::find()->where(['category_id'=>$subCategory['category_id']])->count();
 															echo "<ul>
-												<li><a href=\"#\"> &raquo;".$subCategory['english_name']." <span>(129)</span></a></li>
-												</ul>";
+																<li><a href=\"index.php?r=categories/categories&id=".$subCategory['category_id']."\"> &raquo;".$subCategory['english_name']." <span>($count)</span></a></li>
+																</ul>";
 														}
 													}
 
@@ -175,6 +178,51 @@
 								</div>							
 							</div><!-- featured-top -->	
 
+							<?php
+							foreach ($advertisement as $ads){
+								foreach ($ads as $ad ){
+									$country = Country::find()
+										->where(['country_id' => $ad['country']])
+										->one();
+									$category = \common\models\Categories::find()->where(['category_id'=> $ad['category_id']])->one();
+									$category = $category['english_name'];
+									echo '<!-- ad-item -->
+							<div class="ad-item row">
+								<!-- item-image -->
+								<div class="item-image-box col-sm-4">
+									<div class="item-image">
+										<a href="index.php?r=advertisement/view&id='.$ad['advertisement_id'].'"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
+										<span class="featured-ad">Featured</span>
+									</div><!-- item-image -->
+								</div>
+								
+								<!-- rending-text -->
+								<div class="item-info col-sm-8">
+									<!-- ad-info -->
+									<div class="ad-info">
+										<h4 class="item-title"><a href="index.php?r=advertisement/view&id='.$ad['advertisement_id'].'">'.$ad['title'].'</a></h4>
+										<div class="item-cat">
+											<span>'.$category .' :  </span>
+											<span>'.$ad['description'].'  </span>
+										</div>										
+									</div><!-- ad-info -->
+									
+									<!-- ad-meta -->
+									<div class="ad-meta">
+										<div class="meta-content">
+											<span class="dated"><a href="#">Date: '.$ad['created_at'].'</a></span>
+										</div>										
+										<!-- item-info-right -->
+										<div class="user-option pull-right">
+											<a href="#" data-toggle="tooltip" data-placement="top" title="'.$ad['city'].','.$country['country_english_name'].'"><i class="fa fa-map-marker"></i> </a>
+											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
+										</div><!-- item-info-right -->
+									</div><!-- ad-meta -->
+								</div><!-- item-info -->
+							</div><!-- ad-item -->';
+								}
+							}
+							?>
 							<!-- ad-item -->
 							<div class="ad-item row">
 								<!-- item-image -->
@@ -209,242 +257,7 @@
 								</div><!-- item-info -->
 							</div><!-- ad-item -->
 
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<div class="item-image-box col-sm-4">
-									<!-- item-image -->
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-										<span class="featured-ad">Featured</span>
-										<a href="#" class="verified" data-toggle="tooltip" data-placement="left" title="Verified"><i class="fa fa-check-square-o"></i></a>
-									</div><!-- item-image -->
-								</div><!-- item-image-box -->
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#"> Accounts Assistant / Junior Accountant </a></h4>
-										<div class="item-cat">
-											<span> Accounting assistant with knowledge of accounting concepts and experience in using accounting softwa... /span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">7 Jan, 16  10:10 pm </a></span>
-											<a href="#" class="tag"><i class="fa fa-tags"></i> Used</a>
-										</div>									
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Dealer"><i class="fa fa-suitcase"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
-							
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<!-- item-image -->
-								<div class="item-image-box col-sm-4">
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-									</div><!-- item-image -->
-								</div>
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#">Accountant-Reconciliation</a></h4>
-										<div class="item-cat">
-											<span> Accountant : Semi qualified (CA inter/CWA/ACCA/CPA ) -required urgently.1) Indian male or Female wit... </span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">Date: 07/07/2016</a></span>
-										</div>										
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
 
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<!-- item-image -->
-								<div class="item-image-box col-sm-4">
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-									</div><!-- item-image -->
-								</div>
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#">Accountant-Reconciliation</a></h4>
-										<div class="item-cat">
-											<span> Accountant : Semi qualified (CA inter/CWA/ACCA/CPA ) -required urgently.1) Indian male or Female wit... </span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">Date: 07/07/2016</a></span>
-										</div>										
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
-
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<!-- item-image -->
-								<div class="item-image-box col-sm-4">
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-									</div><!-- item-image -->
-								</div>
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#">Accountant-Reconciliation</a></h4>
-										<div class="item-cat">
-											<span> Accountant : Semi qualified (CA inter/CWA/ACCA/CPA ) -required urgently.1) Indian male or Female wit... </span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">Date: 07/07/2016</a></span>
-										</div>										
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
-
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<!-- item-image -->
-								<div class="item-image-box col-sm-4">
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-									</div><!-- item-image -->
-								</div>
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#">Accountant-Reconciliation</a></h4>
-										<div class="item-cat">
-											<span> Accountant : Semi qualified (CA inter/CWA/ACCA/CPA ) -required urgently.1) Indian male or Female wit... </span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">Date: 07/07/2016</a></span>
-										</div>										
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
-
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<!-- item-image -->
-								<div class="item-image-box col-sm-4">
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-									</div><!-- item-image -->
-								</div>
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#">Accountant-Reconciliation</a></h4>
-										<div class="item-cat">
-											<span> Accountant : Semi qualified (CA inter/CWA/ACCA/CPA ) -required urgently.1) Indian male or Female wit... </span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">Date: 07/07/2016</a></span>
-										</div>										
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
-
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<!-- item-image -->
-								<div class="item-image-box col-sm-4">
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-									</div><!-- item-image -->
-								</div>
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#">Accountant-Reconciliation</a></h4>
-										<div class="item-cat">
-											<span> Accountant : Semi qualified (CA inter/CWA/ACCA/CPA ) -required urgently.1) Indian male or Female wit... </span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">Date: 07/07/2016</a></span>
-										</div>										
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
-							
-							
-							
 							<!-- pagination  -->
 							<div class="text-center">
 								<ul class="pagination ">

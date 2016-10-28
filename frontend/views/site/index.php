@@ -1,6 +1,8 @@
 <?php
 use frontend\models\Advertisement;
 use common\models\Categories;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 include('include/header.php'); ?>
 
@@ -17,7 +19,8 @@ include('include/header.php'); ?>
                         <br /><br />
                         <!-- banner-form -->
                         <div class="banner-form">
-                            <form method="GET" action="index.php?r=categories/search" >
+                            <?php ActiveForm::begin(['action' => 'index.php?r=categories/search', 'method' => 'get']); ?>
+
 
                                 <!-- category-change -->
                                
@@ -35,7 +38,7 @@ include('include/header.php'); ?>
                             
                                 <input type="text" name="search" class="form-control" placeholder="What are you looking for...?">
                                 <button type="submit" class="form-control" value="Search">Search</button>
-                            </form>
+                            <?php ActiveForm::end(); ?>
                         </div><!-- banner-form -->
                         
                         <!-- banner-socail -->

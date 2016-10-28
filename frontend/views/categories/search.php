@@ -142,19 +142,13 @@ use yii\data\Pagination;
 							</div><!-- featured-top -->	
 
 
-							<?php 
-								foreach ($advertisement as $ads) {
-									$count = $ads->count();
-						            $pagination = new Pagination(['defaultPageSize' => 4 ,
-						                'totalCount' => $count]);
-						            $ads = $ads->offset($pagination->offset)
-						            ->limit($pagination->limit)
-						            ->all();
-																
+							<?php
 								foreach ($ads as $ad) {	
 								$country = Country::find()
 						        ->where(['country_id' => $ad['country']])
 						        ->one();
+									$category = \common\models\Categories::find()->where(['category_id'=>$ad['category_id']])->one();
+									$category = $category['english_name'];
 								echo '<div class="ad-item row">
 								<!-- item-image -->
 								<div class="item-image-box col-sm-4">
@@ -187,11 +181,11 @@ use yii\data\Pagination;
 								</div><!-- item-info -->
 							</div><!-- ad-item -->';
 
-					               }
+				               }
 					               echo LinkPager::widget([
 								    'pagination' => $pagination,
-								]);
-					           }
+							]);
+
 						        
 							
 

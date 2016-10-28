@@ -278,7 +278,6 @@ class SiteController extends Controller
         return $this->render('my-ads',['user'=>$user,'count'=>$count,'my_ads'=> $my_ads ,'pagination'=>$pagination]);
     }
 
-
     public function actionMyWishlist(){
         $user = $this->getUser();
         $id = $user->id;
