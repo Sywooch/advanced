@@ -28,7 +28,7 @@ use yii\bootstrap\ActiveForm;
 
                 <div class="user-option">
                 <div class="checkbox pull-left">
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'rememberMe')->checkbox(["chaked"]) ?>
                 </div>
                 <div class="pull-right forgot-password">
                   <?= Html::a('Forgot password', ['site/request-password-reset']) ?>.

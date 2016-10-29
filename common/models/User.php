@@ -70,7 +70,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['mobile', 'string', 'max' => 255],
             ['place', 'required'],
             ['place', 'string', 'max' => 255],
-            [['currentPassword','newPassword','confirmPassword'],'required'],
+           // [['currentPassword','newPassword','confirmPassword'],'required'],
             [['currentPassword'] , 'validateCurrentPassword'],
             [['newPassword','confirmPassword'], 'string' ,'min'=>6],
             [['newPassword','confirmPassword'] , 'filter' , 'filter' =>'trim'],

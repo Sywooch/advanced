@@ -60,7 +60,7 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->mobile = $this->mobile;
         $user->place = $this->place;
-        
+       // $user->currentPassword =$this->password;
         return $user->save() ? $user : null;
     }
 
@@ -73,21 +73,6 @@ class SignupForm extends Model
         }
     }
 
-    public function update($id)
-    {
-        if (!$this->validate()) {
-            return null;
-        }
-        $user = $this->findUser($id);
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->mobile = $this->mobile;
-        $user->place = $this->place;
-        
-        return $user->save() ? $user : null;
-    }
 
 
 }

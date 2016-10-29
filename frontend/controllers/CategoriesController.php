@@ -12,29 +12,42 @@ class CategoriesController extends Controller
 {
 
 public $enableCsrfValidation = false;
+
   public function actionCategories($id)
-    {
-        //get all categories
-        $query = "SELECT * from categories where 	parent_category_id =0 ";
-        $dbCommand = Yii::$app->db->createCommand($query);
-        $MainCategories = $dbCommand->queryAll();
+  {
+      //get all categories
+      $query = "SELECT * from categories where 	parent_category_id =0 ";
+      $dbCommand = Yii::$app->db->createCommand($query);
+      $MainCategories = $dbCommand->queryAll();
 
-        $model = $this->findModel($id);
-            //get ads
-            $SubCategories = Categories::find()
-                ->where(['parent_category_id' => $model['category_id']])
-                ->all();
+      $model = $this->findModel($id);
+      if ($model['parent_category_id'] == 0) {
+          //get ads
+          $SubCategories = Categories::find()
+              ->where(['parent_category_id' => $model['category_id']])
+              ->all();
+          $ads = Advertisement::find()
+              ->where(['category_id' => $SubCategories]);
+          $count = $ads->count();
+          $pagination = new Pagination(['defaultPageSize' => 4,
+              'totalCount' => $count]);
+          $ads = $ads->offset($pagination->offset)
+              ->limit($pagination->limit)
+              ->all();
 
-            $advertisement = array();
-            foreach ($SubCategories as $sub) {
-                $ads = Advertisement::find()->where(['category_id' => $sub['category_id']])
-                    ->all();
-
-                array_push($advertisement, $ads);
-            }
-        //$MainCategories = Categories::find()->where(['parent_category_id' => 0]);
-        return $this->render('categories',['MainCategories'=>$MainCategories,'model'=>$model,'advertisement'=>$advertisement]);
-    }
+          //$MainCategories = Categories::find()->where(['parent_category_id' => 0]);
+      }
+      else {
+          $ads = Advertisement::find()->where(['category_id'=>$id]);
+          $count = $ads->count();
+          $pagination = new Pagination(['defaultPageSize' => 4,
+              'totalCount' => $count]);
+          $ads = $ads->offset($pagination->offset)
+              ->limit($pagination->limit)
+              ->all();
+      }
+      return $this->render('categories', ['MainCategories' => $MainCategories, 'model' => $model, 'ads' => $ads, 'pagination' => $pagination]);
+  }
 
 
 
@@ -53,40 +66,48 @@ public $enableCsrfValidation = false;
         $category  = ($_GET['category']);
         $searchword = ($_GET['search']);
         if ($category != null || $searchword != null){
-        //get sub categories
-        $SubCategories = Categories::find()
-        ->where(['parent_category_id'=> $category])
-        ->all();
+            $model = $this->findModel($category);
+            if ($model['parent_category_id'] == 0 ) {
+                //get sub categories
+                $SubCategories = Categories::find()
+                    ->where(['parent_category_id' => $category])
+                    ->all();
+                $ads = Advertisement::find()
+                    ->where(['category_id' => $SubCategories])
+                    ->orFilterWhere(['like', 'title', $searchword])
+                    ->orFilterWhere(['like', 'description', $searchword]);
+                $count = $ads->count();
+                $pagination = new Pagination(['defaultPageSize' => 4,
+                    'totalCount' => $count]);
+                $ads = $ads->offset($pagination->offset)
+                    ->limit($pagination->limit)
+                    ->all();
+                // get category name
+                $main = Categories::find()->where(['category_id' => $category])->one();
+                $main = $main['english_name'];
+            }
+            else {
+                $ads = Advertisement::find()
+                    ->where(['category_id' => $category])
+                    ->orFilterWhere(['like', 'title', $searchword])
+                    ->orFilterWhere(['like', 'description', $searchword]);
+                $count = $ads->count();
+                $pagination = new Pagination(['defaultPageSize' => 4,
+                    'totalCount' => $count]);
+                $ads = $ads->offset($pagination->offset)
+                    ->limit($pagination->limit)
+                    ->all();
+                // get category name
+                $main = Categories::find()->where(['category_id' => $model['parent_category_id']])->one();
+                $SubCategories = Categories::find()
+                    ->where(['parent_category_id' => $main['category_id']])
+                    ->all();
+                $main = $main['english_name'];
 
-        $advertisement=  array();
-            $lastAds = array();
-        foreach ($SubCategories as $sub) {
-           $ads= Advertisement::find()
-            ->orFilterWhere(['like', 'title', $searchword])
-            ->orFilterWhere(['like', 'description', $searchword])
-            ->orFilterWhere(['category_id' => $sub['category_id']]);
-             array_push($advertisement, $ads);
-           }
-           foreach ($advertisement as $ads ){
-               foreach ($ads as $ad)
-               {
-                   print_r($ad);
-                   array_push($lastAds , $ad);
-               }
-           }
-            $count = count($lastAds);
-             $pagination = new Pagination(['defaultPageSize' => 4 ,
-                 'totalCount' => $count]);
-             $ads = $lastAds->offset($pagination->offset)
-             ->limit($pagination->limit)
-             ->all();
+            }
 
 
-       // get category name
-        $main = Categories::find()->where(['category_id' => $category])->one();
-        $main = $main['english_name'];
-
-        //return $this->render("search",['SubCategories'=>$SubCategories,'ads'=>$ads, 'main'=>$main,'pagination'=>$pagination]);
+                return $this->render("search",['SubCategories'=>$SubCategories,'ads'=>$ads, 'main'=>$main,'pagination'=>$pagination]);
         }
         else
             return $this->goBack();

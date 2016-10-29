@@ -49,7 +49,7 @@ use yii\data\Pagination;
 											<?php 
 											foreach ($SubCategories as $sub) {
 												$count = Advertisement::find()->where(['category_id' => $sub->category_id])->count();
-											echo '<li><a href="#">&raquo;'.$sub['english_name'].'<span>('.$count.')</span></a></li>';
+											echo '<li><a href="index.php?r=categories/search&category='.$sub['category_id'].'&search=">&raquo;'.$sub['english_name'].'<span>('.$count.')</span></a></li>';
 											}?>
 											</ul>
 
@@ -182,12 +182,11 @@ use yii\data\Pagination;
 							</div><!-- ad-item -->';
 
 				               }
+							echo '<div class="text-center">';
 					               echo LinkPager::widget([
 								    'pagination' => $pagination,
 							]);
-
-						        
-							
+							echo '</div>';
 
 							?> 
 

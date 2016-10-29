@@ -175,11 +175,12 @@ class SiteController extends Controller
                     return $this->goHome();
                 }
             }
+            else { echo 'user not validated';}
         }
-
+        else {
         return $this->render('signup', [
             'model' => $model,
-        ]);
+        ]);}
     }
 
     /**
@@ -246,19 +247,21 @@ class SiteController extends Controller
         $loadpost = $model->load(Yii::$app->request->post());
         $loadpost1 = $model1->load(Yii::$app->request->post());
 
-        if ($model->load(Yii::$app->request->post()))
+      if ($model->load(Yii::$app->request->post()))
         {
             $model->save(false);
+            if($loadpost1 && $model1->validate())
+            {
+                $model1->password = $model1->newPassword;
+
+                $model1->save(false);
+                // yii::$app->session->setFlash('success','you have successfully changed your password');
+
+            }
             return $this->refresh();
         }
-      if($loadpost1 && $model1->validate())
-        {
-            $model1->password = $model1->newPassword;
-            $model1->save(false);
-            // yii::$app->session->setFlash('success','you have successfully changed your password');
-            return $this->refresh();
-        }
-        else 
+
+        else
         {
             return $this->render('my-profile',
             ['model1'=>$model1,'model'=>$model]);
@@ -271,6 +274,7 @@ class SiteController extends Controller
         $id = $user->id;
         $query = Advertisement::find()->where(['user_id'=>$id]);
         $count = $query->count();
+        //var_dump($query);
         $pagination = new Pagination(['totalCount' => $count,'defaultPageSize' => 4]);
         $my_ads = $query->offset($pagination->offset)
         ->limit($pagination->limit)

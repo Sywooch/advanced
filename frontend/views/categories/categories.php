@@ -1,6 +1,7 @@
 <?php include('include/header.php');
 use frontend\models\Country;
-use frontend\models\Advertisement; ?>
+use frontend\models\Advertisement;
+use yii\widgets\LinkPager;?>
 
 	<!-- main -->
 	<section id="main" class="clearfix category-page">
@@ -25,7 +26,7 @@ use frontend\models\Advertisement; ?>
 
 						<!-- language-dropdown -->
 						<div class="dropdown category-dropdown language-dropdown ">						
-							<a data-toggle="dropdown" href="#"><span class="change-text">United Kingdom</span> <i class="fa fa-angle-down"></i></a>
+							<a data-toggle="dropdown" href="#"><span class="change-text">Select Countray</span> <i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu  language-change">
 								<li><a href="#">United Kingdom</a></li>
 								<li><a href="#">United States</a></li>
@@ -82,9 +83,9 @@ use frontend\models\Advertisement; ?>
 														foreach ($SubCategories as $subCategory)
 														{
 															$count = \frontend\models\Advertisement::find()->where(['category_id'=>$subCategory['category_id']])->count();
-															echo "<ul>
-																<li><a href=\"index.php?r=categories/categories&id=".$subCategory['category_id']."\"> &raquo;".$subCategory['english_name']." <span>($count)</span></a></li>
-																</ul>";
+															echo '<ul>
+																<li><a href="index.php?r=categories/categories&id='.$subCategory['category_id'].'">'.$subCategory['english_name'].' <span>('.$count.')</span></a></li>
+																</ul>';
 														}
 													}
 
@@ -179,19 +180,18 @@ use frontend\models\Advertisement; ?>
 							</div><!-- featured-top -->	
 
 							<?php
-							foreach ($advertisement as $ads){
-								foreach ($ads as $ad ){
+								foreach ($ads as $ad ) {
 									$country = Country::find()
 										->where(['country_id' => $ad['country']])
 										->one();
-									$category = \common\models\Categories::find()->where(['category_id'=> $ad['category_id']])->one();
+									$category = \common\models\Categories::find()->where(['category_id' => $ad['category_id']])->one();
 									$category = $category['english_name'];
 									echo '<!-- ad-item -->
 							<div class="ad-item row">
 								<!-- item-image -->
 								<div class="item-image-box col-sm-4">
 									<div class="item-image">
-										<a href="index.php?r=advertisement/view&id='.$ad['advertisement_id'].'"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
+										<a href="index.php?r=advertisement/view&id=' . $ad['advertisement_id'] . '"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
 										<span class="featured-ad">Featured</span>
 									</div><!-- item-image -->
 								</div>
@@ -200,80 +200,34 @@ use frontend\models\Advertisement; ?>
 								<div class="item-info col-sm-8">
 									<!-- ad-info -->
 									<div class="ad-info">
-										<h4 class="item-title"><a href="index.php?r=advertisement/view&id='.$ad['advertisement_id'].'">'.$ad['title'].'</a></h4>
+										<h4 class="item-title"><a href="index.php?r=advertisement/view&id=' . $ad['advertisement_id'] . '">' . $ad['title'] . '</a></h4>
 										<div class="item-cat">
-											<span>'.$category .' :  </span>
-											<span>'.$ad['description'].'  </span>
+											<span>' . $category . ' :  </span>
+											<span>' . $ad['description'] . '  </span>
 										</div>										
 									</div><!-- ad-info -->
 									
 									<!-- ad-meta -->
 									<div class="ad-meta">
 										<div class="meta-content">
-											<span class="dated"><a href="#">Date: '.$ad['created_at'].'</a></span>
+											<span class="dated"><a href="#">Date: ' . $ad['created_at'] . '</a></span>
 										</div>										
 										<!-- item-info-right -->
 										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="'.$ad['city'].','.$country['country_english_name'].'"><i class="fa fa-map-marker"></i> </a>
+											<a href="#" data-toggle="tooltip" data-placement="top" title="' . $ad['city'] . ',' . $country['country_english_name'] . '"><i class="fa fa-map-marker"></i> </a>
 											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
 										</div><!-- item-info-right -->
 									</div><!-- ad-meta -->
 								</div><!-- item-info -->
 							</div><!-- ad-item -->';
 								}
-							}
+								echo '<div class="text-center">';
+							echo LinkPager::widget([
+								'pagination' => $pagination,
+							]);
+							echo '</div>';
 							?>
-							<!-- ad-item -->
-							<div class="ad-item row">
-								<!-- item-image -->
-								<div class="item-image-box col-sm-4">
-									<div class="item-image">
-										<a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
-										<span class="featured-ad">Featured</span>
-									</div><!-- item-image -->
-								</div>
-								
-								<!-- rending-text -->
-								<div class="item-info col-sm-8">
-									<!-- ad-info -->
-									<div class="ad-info">
-										<h4 class="item-title"><a href="#">Accountant-Reconciliation</a></h4>
-										<div class="item-cat">
-											<span> Accountant : Semi qualified (CA inter/CWA/ACCA/CPA ) -required urgently.1) Indian male or Female wit... </span>
-										</div>										
-									</div><!-- ad-info -->
-									
-									<!-- ad-meta -->
-									<div class="ad-meta">
-										<div class="meta-content">
-											<span class="dated"><a href="#">Date: 07/07/2016</a></span>
-										</div>										
-										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
-										</div><!-- item-info-right -->
-									</div><!-- ad-meta -->
-								</div><!-- item-info -->
-							</div><!-- ad-item -->
 
-
-							<!-- pagination  -->
-							<div class="text-center">
-								<ul class="pagination ">
-									<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-									<li><a href="#">1</a></li>
-									<li class="active"><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">...</a></li>
-									<li><a href="#">10</a></li>
-									<li><a href="#">20</a></li>
-									<li><a href="#">30</a></li>
-									<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>			
-								</ul>
-							</div><!-- pagination  -->					
 						</div>
 					</div><!-- recommended-ads -->
 
