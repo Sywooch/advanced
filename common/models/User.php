@@ -71,24 +71,24 @@ class User extends ActiveRecord implements IdentityInterface
             ['place', 'required'],
             ['place', 'string', 'max' => 255],
            // [['currentPassword','newPassword','confirmPassword'],'required'],
-            [['currentPassword'] , 'validateCurrentPassword'],
-            [['newPassword','confirmPassword'], 'string' ,'min'=>6],
-            [['newPassword','confirmPassword'] , 'filter' , 'filter' =>'trim'],
-            [['confirmPassword'] , 'compare', 'compareAttribute'=>'newPassword' , 'message'=>'password do not match'],
+//            [['currentPassword'] , 'validateCurrentPassword'],
+//            [['newPassword','confirmPassword'], 'string' ,'min'=>6],
+//            [['newPassword','confirmPassword'] , 'filter' , 'filter' =>'trim'],
+//            [['confirmPassword'] , 'compare', 'compareAttribute'=>'newPassword' , 'message'=>'password do not match'],
             
         ];
     }
 
-    public function validateCurrentPassword(){
-        if(!$this->verifyPassword($this->currentPassword)){
-            $this->addError("currentPassword","current password incorect ");
-        }
-    }
-    public function verifyPassword($password){
-        $dbpassword  = static::findOne(['username'=>yii::$app->user->identity->username ,
-                                    'status' =>self::STATUS_ACTIVE])->password_hash;
-        return yii::$app->security->validatePassword($password,$dbpassword);
-    }
+//    public function validateCurrentPassword(){
+//        if(!$this->verifyPassword($this->currentPassword)){
+//            $this->addError("currentPassword","current password incorect ");
+//        }
+//    }
+//    public function verifyPassword($password){
+//        $dbpassword  = static::findOne(['username'=>yii::$app->user->identity->username ,
+//                                    'status' =>self::STATUS_ACTIVE])->password_hash;
+//        return yii::$app->security->validatePassword($password,$dbpassword);
+//    }
 
     /**
      * @inheritdoc

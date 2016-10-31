@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\ChangePassword;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -242,30 +243,36 @@ class SiteController extends Controller
     public function actionMyProfile()
     {
         $model = yii::$app->user->identity;
-        $model1 = yii::$app->user->identity;
+        //$model1 = yii::$app->user->identity;
+        $model1 = new ChangePassword();
         $user = $this->getUser();
         $loadpost = $model->load(Yii::$app->request->post());
         $loadpost1 = $model1->load(Yii::$app->request->post());
 
       if ($model->load(Yii::$app->request->post()))
         {
-            $model->save(false);
+           $model->save(false);
+            yii::$app->session->setFlash('success','you have successfully updated your profile');
+            return $this->refresh();
+
+        }
+        else {
             if($loadpost1 && $model1->validate())
             {
-                $model1->password = $model1->newPassword;
-
-                $model1->save(false);
-                // yii::$app->session->setFlash('success','you have successfully changed your password');
+                $user->password = $model1->newPassword;
+                $user->save(false);
+                 yii::$app->session->setFlash('success','you have successfully changed your password');
+                return $this->refresh();
 
             }
-            return $this->refresh();
+            else
+            {
+                return $this->render('my-profile',
+                    ['model1'=>$model1,'model'=>$model]);
+            }
         }
 
-        else
-        {
-            return $this->render('my-profile',
-            ['model1'=>$model1,'model'=>$model]);
-        }
+
     }
     
 

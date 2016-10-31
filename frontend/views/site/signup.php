@@ -34,7 +34,8 @@ use yii\widgets\ActiveForm;
                     }
                     else
                     {
-                        document.getElementById('submit').disabled=true;
+                         document.getElementById('submit').disabled=true;
+                        //this.style.borderColor ='red';
                     }
                     ">
                 <?= $form->field($model, 'mobile')->textInput(['class' => "form-control",'placeholder'=>"Mobile Number"])->label('') ?>

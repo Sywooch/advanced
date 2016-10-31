@@ -2,10 +2,15 @@
 namespace frontend\models;
 
 use yii\base\Model;
+use Yii;
+use yii\base\NotSupportedException;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 use common\models\User;
 class ChangePassword extends Model {
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    //const STATUS_DELETED = 0;
+    //const STATUS_ACTIVE = 10;
     public $currentPassword;
     public $newPassword;
     public $confirmPassword;
@@ -13,8 +18,8 @@ class ChangePassword extends Model {
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+           // ['status', 'default', 'value' => self::STATUS_ACTIVE],
+           // ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
 
             [['currentPassword','newPassword','confirmPassword'],'required'],
             [['currentPassword'] , 'validateCurrentPassword'],
@@ -30,13 +35,12 @@ class ChangePassword extends Model {
         }
     }
     public function verifyPassword($password){
-        $dbpassword  = static::findOne(['username'=>yii::$app->user->identity->username ,
-            'status' =>self::STATUS_ACTIVE])->password_hash;
+        $dbpassword  = User::findOne(['username'=>yii::$app->user->identity->username ])->password_hash;
         return yii::$app->security->validatePassword($password,$dbpassword);
     }
 
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return User::findOne(['id' => $id]);
     }
 }
