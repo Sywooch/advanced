@@ -3,6 +3,7 @@ use frontend\models\Advertisement;
 use common\models\Categories;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use frontend\models\Country;
 /* @var $this yii\web\View */
 include('include/header.php'); ?>
 
@@ -107,10 +108,9 @@ include('include/header.php'); ?>
                             <!-- item-image -->
                             <?php 
                             foreach ($advert as $ad) {
-                                //$Cat_id = $ad['category_id'];
-                                //$category = Categories::find()-where(['category_id' => $Cat_id])
-                               // ->one();
-                               // $category = $category['english_name'];
+                                $country = Country::find()
+                                    ->where(['country_id' => $ad['country']])
+                                    ->one();
                             echo '
                             <div class="ad-item row">
                             <div class="item-image-box col-sm-3">
@@ -140,7 +140,7 @@ include('include/header.php'); ?>
                                     </div>                                  
                                     <!-- item-info-right -->
                                     <div class="user-option pull-right">
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="'.$ad['city'].','.$country['country_english_name'].'"><i class="fa fa-map-marker"></i> </a>
                                         <a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Dealer"><i class="fa fa-suitcase"></i> </a>                                            
                                     </div><!-- item-info-right -->
                                 </div><!-- ad-meta -->

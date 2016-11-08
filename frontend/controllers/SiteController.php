@@ -302,12 +302,6 @@ class SiteController extends Controller
     }
 
 
-    public function actionMyApplications(){
-        $user = $this->getUser();
-        $id = $user->id;
-
-        return $this->render('my-applications',['user'=>$user,'count'=>$count,'my_wishlist'=> $my_wishlist,'pagination'=>$pagination]);
-    }
 
 
     public function actionAskDubarji(){
