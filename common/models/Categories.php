@@ -27,6 +27,7 @@ class Categories extends \yii\db\ActiveRecord
     {
         return 'categories';
     }
+    public $file;
 
     /**
      * @inheritdoc
@@ -34,7 +35,7 @@ class Categories extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['arabic_name', 'english_name', 'parent_category_id', 'arabic_description', 'english_description'], 'required'],
+            [['arabic_name', 'english_name', 'arabic_description', 'english_description'], 'required'],
             [['parent_category_id'], 'integer'],
             [['arabic_description', 'english_description'], 'string'],
             [['arabic_name', 'english_name', 'icon'], 'string', 'max' => 255],
@@ -50,7 +51,7 @@ class Categories extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'arabic_name' => 'Arabic Name',
             'english_name' => 'English Name',
-            'parent_category_id' => 'Parent Category ID',
+            'parent_category_id' => 'Main Category',
             'arabic_description' => 'Arabic Description',
             'english_description' => 'English Description',
             'icon' => 'Icon',
