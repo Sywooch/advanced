@@ -27,11 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'category_id',
             'arabic_name',
             'english_name',
+
             [
                 'attribute' => 'parent_category_id',
                 'value' => function ($data) {
-                    $name = \common\models\Categories::find()->where(['category_id'=>$data['category_id']])->one();
-                    return $name['english_name'];}
+        if ($data['parent_category_id'] != 0 ) {
+            $name = \common\models\Categories::find()->where(['category_id'=>$data['parent_category_id']])->one();
+            return $name['english_name'];
+        }
+        else {
+            $str = " it's main category ";
+            return $str ;}}
             ],
 
             'arabic_description:ntext',
