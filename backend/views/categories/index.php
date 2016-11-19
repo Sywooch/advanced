@@ -27,7 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'category_id',
             'arabic_name',
             'english_name',
-            'parent_category_id',
+            [
+                'attribute' => 'parent_category_id',
+                'value' => function ($data) {
+                    $name = \common\models\Categories::find()->where(['category_id'=>$data['category_id']])->one();
+                    return $name['english_name'];}
+            ],
 
             'arabic_description:ntext',
             // 'english_description:ntext',
