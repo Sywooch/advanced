@@ -43,9 +43,7 @@ use frontend\models\Advertisement;
 						<li ><a href="index.php?r=site/my-profile">Profile</a></li>
 						<li ><a href="index.php?r=site/my-ads">My ads</a></li>
 						<li><a href="favourite-ads.html">Applications</a></li>
-						<li><a href="archived-ads.html">Ads Preferences</a></li>
-						<li class="active"><a href="index.php?r=site/my-wishlist">Whishlist</a></li>
-					</ul>
+						</ul>
 			
 			</div><!-- ad-profile -->			
 			

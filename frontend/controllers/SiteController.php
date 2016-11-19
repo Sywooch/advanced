@@ -84,7 +84,7 @@ class SiteController extends Controller
         $categories  = $query->all();
         
 
-        $query = "SELECT * from advertisement ORDER BY advertisement_id Desc limit 4 ";
+        $query = "SELECT * from advertisement where status = 1 ORDER BY advertisement_id Desc limit 4 ";
         $dbCommand = Yii::$app->db->createCommand($query);
         $ads = $dbCommand->queryAll();
         return $this->render('index',['categories'=> $categories , 'advert'=>$ads]);
@@ -105,7 +105,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             $session = Yii::$app->session;  
             $session -> open();
-           $session -> set('id',$model->getUser()->id);
+            $session -> set('id',$model->getUser()->id);
             return $this->goBack();
         } else {
             return $this->render('login', [

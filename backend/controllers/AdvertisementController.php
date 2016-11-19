@@ -3,16 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Categories;
-use common\models\CategoriesSearch;
+use backend\models\Advertisement;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use frontend\models\AdvertisementPhotos;
+
 /**
- * CategoriesController implements the CRUD actions for Categories model.
+ * AdvertisementController implements the CRUD actions for Advertisement model.
  */
-class CategoriesController extends Controller
+class AdvertisementController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,27 +31,32 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Lists all Categories models.
+     * Lists all Advertisement models.
      * @return mixed
      */
     public function actionIndex()
     {
-          if (Yii::$app->user->isGuest)
+
+
+       if (Yii::$app->user->isGuest)
             $this->redirect('site/login');
         else
         {
-        $searchModel = new CategoriesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Advertisement::find()->where(['status' => 0]),
+        ]);
+
+        $model = Advertisement::find()->where(['status' => 0])->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model
         ]);
-    }
+        }
     }
 
     /**
-     * Displays a single Categories model.
+     * Displays a single Advertisement model.
      * @param integer $id
      * @return mixed
      */
@@ -62,25 +68,16 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Creates a new Categories model.
+     * Creates a new Advertisement model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Categories();
-        $model->parent_category_id = 0;
-        if ($model->load(Yii::$app->request->post()) ) {
-            //get the instance of the uploaded file
-            $imageName = $model->english_name;
-            $model ->file = UploadedFile::getInstance($model,'file');
-           if ( isset( $model->file)){
-            $model ->file->saveAs('../../frontend/web/images/uploads/'.$imageName.'.'.$model->file->extension );
-            //save the path in the db column
-            $model ->icon = 'images/uploads/'.$imageName.'.'.$model->file->extension;}
-            if ( $model->parent_category_id == Null ){ $model->parent_category_id = 0;}
-            $model ->save(false);
-            return $this->redirect(['view', 'id' => $model->category_id]);
+        $model = new Advertisement();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->advertisement_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -89,7 +86,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Updates an existing Categories model.
+     * Updates an existing Advertisement model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,7 +96,7 @@ class CategoriesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->category_id]);
+            return $this->redirect(['view', 'id' => $model->advertisement_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -107,29 +104,54 @@ class CategoriesController extends Controller
         }
     }
 
+    public function actionEdit($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = 1 ;
+        $model-> save();
+
+
+        return $this->redirect(['index']);
+
+
+
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->advertisement_id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+    }
+
     /**
-     * Deletes an existing Categories model.
+     * Deletes an existing Advertisement model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionRemove($id)
     {
+
+        $model = Yii::$app->db->createCommand('DELETE FROM advertisement_photos WHERE advertisement_id=:advertisement_id');
+        $model->bindParam(':advertisement_id', $id);
+        $model->execute();
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Categories model based on its primary key value.
+     * Finds the Advertisement model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Categories the loaded model
+     * @return Advertisement the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Categories::findOne($id)) !== null) {
+        if (($model = Advertisement::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

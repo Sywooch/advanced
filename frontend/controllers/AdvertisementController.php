@@ -325,7 +325,7 @@ class AdvertisementController extends Controller
 }
 
 
-   public function actionApplyForm($id)
+public function actionApplyForm($id)
 {
     $session = Yii::$app->session;
     $session_id=$session->get('id');

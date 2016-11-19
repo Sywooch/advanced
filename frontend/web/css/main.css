@@ -71,7 +71,7 @@ a:focus,
 input:focus {
 	text-decoration:none;
 	outline: none;
-	color:#02743a;
+	color:#000000;
 }
 
 img {
@@ -99,7 +99,7 @@ input:focus, textarea:focus, select:focus, .form-control:focus {
 
 .title {
 	line-height: 34px;
-	color: #fc3c2cs;
+	color: #fc3c2c;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: 700;
 }
@@ -325,7 +325,6 @@ footer{background-color: #e6e6e6}
 	position: absolute;
 	left: 0;
 	top: 50%;
-	background-image: url(../images/1.png);
 	background-repeat: no-repeat;
 	width: 7px;
 	height: 14px;
@@ -407,8 +406,12 @@ footer{background-color: #e6e6e6}
 
 .category-dropdown {
     background-color: #fff;
-    border-right: 1px solid #e6e6e6;
-    border-radius: 5px 0px 0px 5px; 
+    border-right: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	border-top: 1px solid #FFFFFF;
+
+	border-radius: 5px 0px 0px 5px;
     min-width: 200px;
     line-height: 45px;
     text-align: left;
@@ -463,7 +466,7 @@ footer{background-color: #e6e6e6}
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-	height:49px;
+	height:59px;
 }
 
 .banner-form button:hover {
@@ -1596,7 +1599,6 @@ transform: scale(1.05) rotate(2deg);
 .details-page .language-dropdown {
 	margin: 0;
 	border-radius: 0;
-	border-left: 1px solid #e6e6e6;
 	margin-left: -4px;
 	padding: 0 0 0 17px;
 }
@@ -1997,7 +1999,7 @@ transform: scale(1.05) rotate(2deg);
 }
 
 .selected-product .select-category li:before {
-    top: -8px;
+    top: 14px;
     right: -10px;
     opacity: 1;
 }

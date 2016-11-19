@@ -27,7 +27,7 @@ public $enableCsrfValidation = false;
               ->where(['parent_category_id' => $model['category_id']])
               ->all();
           $ads = Advertisement::find()
-              ->where(['category_id' => $SubCategories]);
+              ->where(['category_id' => $SubCategories , 'status' =>1]);
           $count = $ads->count();
           $pagination = new Pagination(['defaultPageSize' => 4,
               'totalCount' => $count]);
@@ -38,7 +38,7 @@ public $enableCsrfValidation = false;
           //$MainCategories = Categories::find()->where(['parent_category_id' => 0]);
       }
       else {
-          $ads = Advertisement::find()->where(['category_id'=>$id]);
+          $ads = Advertisement::find()->where(['category_id'=>$id , 'status' => 1]);
           $count = $ads->count();
           $pagination = new Pagination(['defaultPageSize' => 4,
               'totalCount' => $count]);
@@ -56,9 +56,10 @@ public $enableCsrfValidation = false;
     {
         if (($model = Categories::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+        } else 
+        if (($model = Categories::findOne(1)) !== null) {
+            return $model;        
+          }
     }
 
     public function actionSearch(){
@@ -73,7 +74,7 @@ public $enableCsrfValidation = false;
                     ->where(['parent_category_id' => $category])
                     ->all();
                 $ads = Advertisement::find()
-                    ->where(['category_id' => $SubCategories])
+                    ->where(['category_id' => $SubCategories , 'status' => 1])
                     ->orFilterWhere(['like', 'title', $searchword])
                     ->orFilterWhere(['like', 'description', $searchword]);
                 $count = $ads->count();
@@ -88,7 +89,7 @@ public $enableCsrfValidation = false;
             }
             else {
                 $ads = Advertisement::find()
-                    ->where(['category_id' => $category])
+                    ->where(['category_id' => $category , 'status' => 1])
                     ->orFilterWhere(['like', 'title', $searchword])
                     ->orFilterWhere(['like', 'description', $searchword]);
                 $count = $ads->count();

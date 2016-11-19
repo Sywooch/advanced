@@ -19,7 +19,7 @@ class AdvertisementSearch extends Advertisement
     public function rules()
     {
         return [
-            [['advertisement_id', 'user_id', 'category_id'], 'integer'],
+            [['advertisement_id', 'user_id', 'category_id','status'], 'integer'],
             [['category_related', 'title', 'description', 'country', 'city', 'phone', 'email'], 'safe'],
         ];
     }
@@ -63,6 +63,7 @@ class AdvertisementSearch extends Advertisement
             'advertisement_id' => $this->advertisement_id,
             'user_id' => $this->user_id,
             'category_id' => $this->category_id,
+            'status' => 1
         ]);
 
         $query->andFilterWhere(['like', 'category_related', $this->category_related])

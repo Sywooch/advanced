@@ -38,7 +38,7 @@ include('include/header.php'); ?>
                                 <!-- category-change -->
                             
                                 <input type="text" name="search" class="form-control" placeholder="What are you looking for...?">
-                                <button type="submit" class="form-control" value="Search">Search</button>
+                                <button style="height: 49px;" type="submit" class="form-control" value="Search">Search</button>
                             <?php ActiveForm::end(); ?>
                         </div><!-- banner-form -->
                         
@@ -68,7 +68,7 @@ include('include/header.php'); ?>
                         foreach ($SubCategories as $sub) {
                             
                                $ads = Advertisement::find()
-                            ->where(['category_id'=> $sub['category_id']])
+                            ->where(['category_id'=> $sub['category_id'] , 'status' => 1])
                             ->count();
                             $count = $count+$ads;                   
                           }

@@ -4,6 +4,8 @@
   
   function submitinfo(id,sub){ 
   	values = {id:id,sub:sub};
+    document.getElementById("next-btn").style.backgroundColor = "#fc3c2c";
+
   	console.log(values);
     $.ajax({
         type: "post",
@@ -16,6 +18,14 @@
   </script>
 
 
+<?php
+
+if(isset($_GET['id']))
+	$id = $_GET['id'];
+else
+	$id = 0;
+
+?>
 	<!-- post-page -->
 	<section id="main" class="clearfix ad-post-page">
 		<div class="container">
@@ -38,17 +48,25 @@
 								<?php
 								foreach ($MainCategories as $mainCategory)
 								{
-									echo "<li ><a href=\"index.php?r=advertisement/ad-post&id=".$mainCategory['category_id']."\" >
-									<span class=\"select\">
-										<img src='".$mainCategory['icon']."' alt=\"Images\" class=\"img-responsive\">
-									</span>
-									 ".$mainCategory['english_name'] ."</a></li>";
+
+									if ($mainCategory['category_id'] == $id)
+										echo "<li class=\"select\"><a style=\"color: #e7412c;\" href=\"index.php?r=advertisement/ad-post&id=".$mainCategory['category_id']."\" >
+										<span class=\"select\">
+											<img src='".$mainCategory['icon']."' alt=\"Images\" class=\"img-responsive\">
+										</span>
+									 	".$mainCategory['english_name'] ."</a></li>";
+									else
+										echo "<li ><a href=\"index.php?r=advertisement/ad-post&id=".$mainCategory['category_id']."\" >
+										<span class=\"select\">
+											<img src='".$mainCategory['icon']."' alt=\"Images\" class=\"img-responsive\">
+										</span>
+									 	".$mainCategory['english_name'] ."</a></li>";
 								}
 								?>
 							</ul>
 						</div>
 					</div>
-					
+
 					<!-- Tab panes -->
 					<div class="col-md-4 col-sm-6">
 						<div class="section tab-content subcategory post-option">
@@ -72,7 +90,7 @@
 							<h2>Post an Ad in just <span>30 seconds</span></h2>
 							<p>Please DO NOT post multiple ads for the same items or service. All duplicate, spam and wrongly categorized ads will be deleted.</p>
 							<div class="btn-section">
-								<a href="index.php?r=advertisement/ad-post-details" class="btn">Next</a>
+								<a href="index.php?r=advertisement/ad-post-details" id = "next-btn" class="btn">Next</a>
 								<a href="#" class="btn-info">or Cancle</a>
 							</div>
 						</div>

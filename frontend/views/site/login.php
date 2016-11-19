@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -18,7 +15,7 @@ use yii\bootstrap\ActiveForm;
                         <h2>User Login</h2>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true ,'class' => "form-control",'placeholder'=>"Full Name"])->label('') ?>
+                <?= $form->field($model, 'email')->textInput(['autofocus' => true ,'class' => "form-control",'placeholder'=>"email"])->label('') ?>
 
                 <?= $form->field($model, 'password')->passwordInput(['class' => "form-control",'placeholder'=>"Password"])->label('') ?>
 

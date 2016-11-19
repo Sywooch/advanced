@@ -23,9 +23,8 @@ use yii\helpers\Html;
 						<div class="user-images">
 							<img src="images/user.jpg" alt="User Images" class="img-responsive">
 						</div>
-						<div class="user">
+						<div class="user" style="margin-top:25px;">
 							<h2>Hello, <a href="#"><?php echo $user->username; ?></a></h2>
-							<h5>You last logged in at: 14-01-2016 6:40 AM [ USA time (GMT + 6:00hrs)]</h5>
 						</div>
 
 						<div class="favorites-user">
@@ -42,8 +41,6 @@ use yii\helpers\Html;
 						<li><a href="index.php?r=site/my-profile">Profile</a></li>
 						<li class="active"><a href="index.php?r=site/my-ads">My ads</a></li>
 						<li><a href="index.php?r=site/my-applications">Applications</a></li>
-						<li><a href="archived-ads.html">Ads Preferences</a></li>
-						<li><a href="index.php?r=site/my-wishlist">Whishlist</a></li>
 					</ul>
 			
 			</div><!-- ad-profile -->			
