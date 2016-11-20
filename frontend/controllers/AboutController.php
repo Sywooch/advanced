@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-
+use yii\filters\VerbFilter;
 use Yii;
 use yii\web\Controller;
 
@@ -11,50 +11,33 @@ class AboutController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
+
 
     public function actionIndex()
     {
-        echo "hii";
-        return  $this->render('index');
+//        $this->layout = 'about';
+        return $this->render('index');
+
+    }
+
+    public function actionNews()
+    {
+        return $this->render('news');
+
+    }
+
+    public function actionProducts()
+    {
+        return $this->render('products');
+
     }
 }
