@@ -45,6 +45,13 @@ AppAsset::register($this);
             ],
             ['label' => 'Advertisment' , 'url' => ['/advertisement/index'],
             ],
+            ['label' => 'Fields' , 'url' => ['/fields/index'],
+            ],
+            ['label' => 'Category Fields' , 'url' => ['/categories-fields/index'],
+            ],
+            ['label' => 'Fields List Data' , 'url' => ['/field-list-data/index'],
+            ],
+
 
         ];
         $menuItems[] = '<li>'
