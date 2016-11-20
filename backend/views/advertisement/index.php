@@ -30,14 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'email:email',
-            ['attribute' => 'category_related' ,
-             'value' => function ($data) { if ($data['category_related'] != 'nothing' ){
+            [
+                'attribute' => 'category_related' ,
+                'format' => 'html',
+                'value' => function ($data) {
+                if ($data['category_related'] != 'nothing' ){
                  $fields  =  json_decode($data['category_related']);
                  if ( !empty($fields) ) {
+                     $returnedValue = "<ul>";
                      foreach ($fields as $field) {
                          foreach ($field as $key => $value) {
-                             //echo $value . " in " . $key . ", ";
-
                              $type = Fields::find()->where(['field_id'=>$key])->one();
                              $type = $type['field_type'];
                              $field_name = Fields::find()->where(['field_id'=>$key])->one();
@@ -45,53 +47,45 @@ $this->params['breadcrumbs'][] = $this->title;
                              switch ($type) {
                                  case 'text':
                                      $val = $value;
-                                     //echo $field_name."   :   ". $val ;
-                                     //echo "</br>";
                                      $cr1 = $field_name.'   :   '. $val;
-
+                                     $returnedValue =  $returnedValue.'<li>'.$cr1.'</li>';
                                      break;
-
                                  case 'number' :
                                      $val = $value;
-                                     //echo $field_name."   :   ". $val ;
-                                     //echo "</br>";
                                      $cr2 = $field_name.'   :   '. $val;
-
+                                     $returnedValue =  $returnedValue.'<li>'.$cr2.'</li>';
                                      break;
                                  case 'list':
                                      $field_item = "SELECT * from field_list_data where  field_list_data_id = $value ";
                                      $dbCommand = Yii::$app->db->createCommand($field_item);
                                      $field_item = $dbCommand->queryOne();
                                      $field_item = $field_item['english_content'];
-                                    // echo $field_name."   :   ". $field_item;
-                                     //echo "</br>";
                                      $cr3 = $field_name.'   :   '. $field_item ;
+                                     $returnedValue =  $returnedValue.'<li>'.$cr3.'</li>';
                                      break;
                                  case 'radio':
                                      $field_item = "SELECT * from field_list_data where  field_list_data_id = $value ";
                                      $dbCommand = Yii::$app->db->createCommand($field_item);
                                      $field_item = $dbCommand->queryOne();
                                      $field_item = $field_item['english_content'];
-                                    // echo $field_name."   :   ". $field_item;
-                                    // echo "</br>";
                                      $cr4 = $field_name."   :   ". $field_item;
+                                     $returnedValue =  $returnedValue.'<li>'.$cr4.'</li>';
                                      break;
                                  case 'checkbox':
                                      $field_item = "SELECT * from field_list_data where  field_list_data_id = $value ";
                                      $dbCommand = Yii::$app->db->createCommand($field_item);
                                      $field_item = $dbCommand->queryOne();
-
                                      $field_item = $field_item['english_content'];
-                                     //echo $field_name."   :   ". $field_item;
-                                     //echo "</br>";
-                                     $cr5 = $field_name.'   :' .$field_item .',';
+                                     $cr5 = $field_name.'   :' .$field_item ;
+                                     $returnedValue =  $returnedValue.'<li>'.$cr5.'</li>';
                                      break;
-                             }  }
+                             }
+                         }
                      }
-                     return $cr1 .','. $cr2 .','. $cr3 .','. $cr4 .','. $cr5;
+                     $returnedValue =  $returnedValue. '</ul>';
+                     return $returnedValue;
                  }
-
-                          }
+                }
                  else {
                      return $data['category_related'];
                 }
