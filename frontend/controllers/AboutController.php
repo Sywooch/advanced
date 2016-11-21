@@ -40,4 +40,22 @@ class AboutController extends Controller
         return $this->render('products');
 
     }
+
+    public function actionInfo()
+    {
+        return $this->render('info');
+
+    }
+
+    public function actionDirectory()
+    {
+        return $this->render('directory');
+
+    }
+
+    public function actionGallery()
+    {
+        return $this->render('gallery');
+
+    }
 }

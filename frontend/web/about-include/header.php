@@ -288,12 +288,13 @@ use yii\helpers\Url;
             </div>
             <!--end:.search-box-->
             <ul>
-                <li class="current-menu-item"><a href="index.html">Home</a></li>
-                <li class=""><a class="" href="news/index.html">News</a></li>
-                <li class=""><a class="" href="products/index.html">Products</a></li>
-                <li class=""><a class="" href="company-info/index.html">Company Info</a></li>
-                <li class=""><a class="" href="pages-directory/index.html">Directory</a></li>
-                <li class=""><a class="" href="media-gallery/index.html">Media Gallery</a></li>
+
+                <li <?php if( Yii::$app->controller->action->id=="index") echo ' class="current-menu-item"';?>><a href="index.php?r=about/index">Home</a></li>
+                <li <?php if( Yii::$app->controller->action->id=="news") echo ' class="current-menu-item"';?>><a class="" href="index.php?r=about/news">News</a></li>
+                <li <?php if( Yii::$app->controller->action->id=="products") echo ' class="current-menu-item"';?>><a class="" href="index.php?r=about/products">Products</a></li>
+                <li <?php if( Yii::$app->controller->action->id=="info") echo ' class="current-menu-item"';?>><a class="" href="index.php?r=about/info">Company Info</a></li>
+                <li <?php if( Yii::$app->controller->action->id=="directory") echo ' class="current-menu-item"';?>><a class="" href="index.php?r=about/directory">Directory</a></li>
+                <li<?php if( Yii::$app->controller->action->id=="gallery") echo ' class="current-menu-item"';?>><a class="" href="index.php?r=about/gallery">Media Gallery</a></li>
 
             </ul>
         </nav>
