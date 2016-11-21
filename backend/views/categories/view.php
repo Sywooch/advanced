@@ -2,11 +2,19 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\Fields;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Categories */
 
 $this->title = $model->category_id;
+$items = [
+    ['id' => 1, 'name' => 'Item 1'],
+    ['id' => 2, 'name' => 'Item 2'],
+    ['id' => 3, 'name' => 'Item 3'],
+    ['id' => 4, 'name' => 'Item 4'],
+    ['id' => 5, 'name' => 'Item 5']
+];
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -37,5 +45,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'icon',
         ],
     ]) ?>
+
+
+        <select multiple="multiple" data-source="http://geodan.github.io/duallistbox/sample/sample-100.json"></select>
+
+        <script>
+            $('select').DualListBox();
+        </script>
+
+
 
 </div>

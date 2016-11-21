@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\FieldListData;
 use Yii;
 use backend\models\Fields;
 use yii\data\ActiveDataProvider;
@@ -51,8 +52,11 @@ class FieldsController extends Controller
      */
     public function actionView($id)
     {
+        $fieldList =  FieldListData::find()->where(['field_id'=>$id])->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'filedList' =>$fieldList
         ]);
     }
 

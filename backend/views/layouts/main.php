@@ -49,8 +49,6 @@ AppAsset::register($this);
             ],
             ['label' => 'Category Fields' , 'url' => ['/categories-fields/index'],
             ],
-            ['label' => 'Fields List Data' , 'url' => ['/field-list-data/index'],
-            ],
 
 
         ];

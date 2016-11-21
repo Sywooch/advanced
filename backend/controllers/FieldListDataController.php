@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * FieldListDataController implements the CRUD actions for FieldListData model.
@@ -17,13 +18,14 @@ class FieldListDataController extends Controller
     /**
      * @inheritdoc
      */
+    public $enableCsrfValidation = false;
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -74,6 +76,17 @@ class FieldListDataController extends Controller
         }
     }
 
+    public function actionCreateAjax()
+    {
+        $model = new FieldListData();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['fields/view', 'id' => $model->field_id]);
+        } else {
+
+        }
+    }
+
     /**
      * Updates an existing FieldListData model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -101,9 +114,10 @@ class FieldListDataController extends Controller
      */
     public function actionDelete($id)
     {
+
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['fields/index']);
     }
 
     /**
