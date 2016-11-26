@@ -4,32 +4,9 @@ use yii\helpers\Url;
 ?>
 
 <footer id="footer-primary">
-    <nav class="select-locale">
-        <label for="select-locale">Country:</label>
-        <select class="select2" id="select-locale">
-            <option value="timeline/break-ground-on-our-first-custom-built-data-center-in-prineville-oregon/index.html">Brazil (Português)</option>
-            <option value="news/2012/06/deadline-for-facebook-site-governance-vote/index.html">Germany (Deutsch)</option>
-            <option value="news/2016/02/friends-day/index.html">France (Français)</option>
-            <option value="locale/ja.html">Japan (日本語)</option>
-            <option value="locale/ko.html">Korea (한국어)</option>
-            <option value="locale/ltam.html">Latin America (Español)</option>
-            <option value="locale/es.html">Spain (Español)</option>
-            <option selected='selected' value="news/2016/04/using-artificial-intelligence-to-help-blind-people-see-facebook/index.html">United States (English)</option>
-        </select>
-    </nav>
-    <nav>
-        <div class="menu-footer-container">
-            <ul id="menu-footer" class="menu">
-                <li id="menu-item-1080" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1080"><a href="https://www.facebook.com/facebook/info">About</a></li>
-                <li id="menu-item-1081" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1081"><a href="https://www.facebook.com/help/220217228006012">Contact Us</a></li>
-                <li id="menu-item-1082" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1082"><a href="http://investor.fb.com/">Investor Relations</a></li>
-                <li id="menu-item-1083" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1083"><a href="https://www.facebook.com/about/privacy">Privacy</a></li>
-                <li id="menu-item-1084" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1084"><a href="https://www.facebook.com/legal/terms">Terms</a></li>
-            </ul>
-        </div>
-    </nav>
-    <p>Facebook &copy; 2016</p>
-    Powered by <a href="https://vip.wordpress.com/?utm_source=vip_powered_wpcom&amp;utm_medium=web&amp;utm_campaign=VIP%20Footer%20Credit" rel="generator nofollow" class="powered-by-wpcom">WordPress.com VIP</a> </footer>
+
+    <p>Dubarah &copy; 2016</p>
+
 <!--end:.footer-primary-->
 </div>
 <!--end:.wrapper-->
@@ -37,16 +14,7 @@ use yii\helpers\Url;
 <div style="display:none">
 </div>
 <script type='text/javascript'>
-    /* <![CDATA[ */
-    var wpcomVipAnalytics = {
-        "is_404": "0",
-        "is_home": "0",
-        "is_single": "0",
-        "is_front_page": "1",
-        "is_archive": "0",
-        "percentToTrack": "1"
-    };
-    /* ]]> */
+  
 </script>
 <script type='text/javascript' src='https://s2.wp.com/_static/??-eJydUtFuwjAM/KGlhlJpvEyT9gt8QZqYJcGJQ50A/fsFtkloD5Pa1/Pd2XcyXLMynAqmAkHA4sUbzLcuyAs8jWJVmeqnTwLkTyhwrljR6WQJp7/k4jA2ysVnOGqDI/MJtAgWgdGn+xryI4RmMc2dmQ1h30Wf1tkIEprSLxdnarhjsosCSB0j20pt/IEzJ6sOjwPAOBZsGb5TrTI8mImp9flbzVE6+YHW9ZPwKhNzXK7USdNcvJHlUscR/3mfXt214WGhnte8x7ft8LoZdsN234cvshD4GA=='></script>
 <script type="text/javascript">

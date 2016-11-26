@@ -18,10 +18,10 @@
 		padding:10px 20px;
 	}
 	#header a.btn{
-		position:absolute;
 		top:60px;
 		right:20px;
 		z-index:10;
+		float: right;
 	}
 	.home-two .category-list .category-item, 
 	.home-one .category-list .category-item {

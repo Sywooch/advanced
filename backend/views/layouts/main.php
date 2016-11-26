@@ -47,7 +47,7 @@ AppAsset::register($this);
             ],
             ['label' => 'Fields' , 'url' => ['/fields/index'],
             ],
-            ['label' => 'Category Fields' , 'url' => ['/categories-fields/index'],
+            ['label' => 'About CMS' , 'url' => ['/about-cms/index'],
             ],
 
 
@@ -77,13 +77,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; Dubarah <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

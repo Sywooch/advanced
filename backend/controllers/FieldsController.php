@@ -70,7 +70,7 @@ class FieldsController extends Controller
         $model = new Fields();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->field_id]);
+            return $this->redirect(['categories/index']);
         } else {
             return $this->render('create', [
                 'model' => $model,

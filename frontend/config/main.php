@@ -36,6 +36,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'blog' => [
+          'class' => '\monitorbacklinks\yii2wp\Wordpress',
+          'endpoint' => 'xmlrpc.php',
+          'username' => 'demo',
+          'password' => 'demo'
+      ]
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

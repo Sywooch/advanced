@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Fields */
 
-$this->title = $model->field_id;
+$this->title = $model->english_name;
 $this->params['breadcrumbs'][] = ['label' => 'Fields', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo '<td>'.$item->english_content.'</td>';
             echo '<td>'.$item->arabic_content.'</td>';
             echo '<td>'.$item->field_order.'</td>';
-            echo '<td><a href="index.php?r=field-list-data/view&id='.$item->field_list_data_id.'"><span class="glyphicon glyphicon-eye-open"></span></a> <a href="index.php?r=field-list-data/update&id='.$item->field_list_data_id.'"><span class="glyphicon glyphicon-edit"></span></a> <a href="index.php?r=field-list-data/delete&id='.$item->field_list_data_id.'"><span class="glyphicon glyphicon-minus-sign"></span></a></td> ';
+            echo '<td><a href="index.php?r=field-list-data/view&id='.$item->field_list_data_id.'"><span class="glyphicon glyphicon-eye-open"></span></a> <a href="index.php?r=field-list-data/update&id='.$item->field_list_data_id.'"><span class="glyphicon glyphicon-edit"></span></a> <a href="index.php?r=field-list-data/delete&id='.$item->field_list_data_id.'&cat='.$item->field_id.'"><span class="glyphicon glyphicon-minus-sign"></span></a></td> ';
             echo '</tr>';
         }
 

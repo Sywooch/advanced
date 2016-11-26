@@ -20,33 +20,20 @@ use yii\helpers\Url;
     <meta charset="UTF-8">
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Facebook Newsroom</title>
-    <meta property="fb:admins" content="621273,100003538436510" />
+    <title>Dubraha Newsroom</title>
     <meta property="fb:app_id" content="312630708801516" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="../s0.wp.com/wp-content/themes/vip/facebook/assets/bin/images/fb-opengraph.png" />
-    <meta property="og:title" content="Facebook Newsroom" />
-    <meta property="og:description" content="View the latest news, announcements, and media resources from Facebook." />
+    <meta property="og:image" content="images/logo.png" />
+    <meta property="og:title" content="Dubarah Newsroom" />
+    <meta property="og:description" content="View the latest news, announcements, and media resources from Dubarah." />
     <meta property="og:url" content="index.html" />
     <!--[if lte IE 8]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="xmlrpc.php">
-    <link rel="alternate" type="application/rss+xml" title="Facebook Newsroom Feed" href="feed/index.html">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../s0.wp.com/wp-content/themes/vip/facebook/assets/bin/images/apple-touch-icon-144x144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../s0.wp.com/wp-content/themes/vip/facebook/assets/bin/images/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../s0.wp.com/wp-content/themes/vip/facebook/assets/bin/images/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../s0.wp.com/wp-content/themes/vip/facebook/assets/bin/images/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../s0.wp.com/wp-content/themes/vip/facebook/assets/bin/images/apple-touch-icon-precomposed.png">
-    <link rel="shortcut icon" href="https://s0.wp.com/wp-content/themes/vip/facebook/assets/bin/images/favicon.ico">
-    <script src='https://r-login.wordpress.com/remote-login.php?action=js&amp;host=newsroom.fb.com&amp;id=62624316&amp;t=1478105707&amp;back=http%3A%2F%2Fnewsroom.fb.com%2F' type="text/javascript"></script>
+    <link rel="alternate" type="application/rss+xml" title="Dubarah Newsroom Feed" href="feed/index.html">
 
-    <link rel='dns-prefetch' href='http://s2.wp.com/' />
-    <link rel='dns-prefetch' href='http://s0.wp.com/' />
-    <link rel='dns-prefetch' href='http://s1.wp.com/' />
-    <link rel='dns-prefetch' href='http://fbnewsroomus.wordpress.com/' />
     <script type="text/javascript">
         /* <![CDATA[ */
         function addLoadEvent(func) {
@@ -212,80 +199,33 @@ use yii\helpers\Url;
             padding: 0px 10px 0px 0px;
         }
     </style>
-    <meta name="application-name" content="Facebook Newsroom" />
+    <meta name="application-name" content="Dubarah Newsroom" />
     <meta name="msapplication-window" content="width=device-width;height=device-height" />
     <meta name="msapplication-task" content="name=Subscribe;action-uri=http://newsroom.fb.com/feed/;icon-uri=http://0.gravatar.com/blavatar/afc121cc2580b79a105cf9c7edfa7720?s=16" />
     <style type="text/css" id="syntaxhighlighteranchor"></style>
+    <link rel="stylesheet" href="css/about.css">
+
 </head>
 
 <body class="home page page-id-1086 page-template-default mp6 customizer-styles-applied group-blog page-home country-us locale-en highlander-enabled highlander-light">
 <!--
         Locale: en			Country: us		-->
 <div id="fb-root"></div>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: "849482318459358",
-            xfbml: true,
-            version: 'v2.3'
-        });
-    };
 
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "\/\/connect.facebook.net\/en_US\/all.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<script>
-    // Google Analytics
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '../www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-47542077-1', 'auto');
-    ga('create', 'UA-47542077-14', 'auto', {
-        'name': 'localeTracker'
-    });
-    ga('send', 'pageview');
-    ga('localeTracker.send', 'pageview');
-</script>
 <header id="header-primary">
     <div id="header-1" class="wrapper clearfix">
         <div id="logo">
-            <a href="http://www.facebook.com/" id="logo-icon" title="Facebook Home">
-                <img src="<?php echo Url::base(true); ?>/images/about-images/logo-fb-2x.png" width="28" height="28" alt="" />
+            <a href="<?php echo Url::base(true); ?>" id="logo-icon" title="Dubarah Home">
+                <img src="<?php echo Url::base(true); ?>/images/logo.png"  alt="" />
             </a>
-            <a href="index.html" id="logo-text">Facebook Newsroom</a>
         </div>
         <span id="primary-menu-toggle">Menu</span>
     </div>
     <!--end:.wrapper-->
     <div id="header-2">
         <nav class="wrapper">
-            <div class="search-box">
-                <form method="get" action="http://newsroom.fb.com/">
-                    <label for="search">
-                        <span>Search in newsroom</span>
-                    </label>
-                    <input type="text" id="search" name="s" placeholder="Search in newsroom" value="" />
-                    <input type="hidden" name="post_type" value="" />
-                    <button type="submit"></button>
-                </form>
-            </div>
+
             <!--end:.search-box-->
             <ul>
 

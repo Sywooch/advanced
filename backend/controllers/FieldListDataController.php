@@ -98,7 +98,7 @@ class FieldListDataController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->field_list_data_id]);
+            return $this->redirect(['fields/view', 'id' => $model->field_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -112,12 +112,11 @@ class FieldListDataController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($id,$cat)
     {
 
         $this->findModel($id)->delete();
-
-        return $this->redirect(['fields/index']);
+        return $this->redirect(['fields/view', 'id' => $cat]);
     }
 
     /**

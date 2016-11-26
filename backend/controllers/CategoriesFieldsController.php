@@ -23,7 +23,7 @@ class CategoriesFieldsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -66,7 +66,7 @@ class CategoriesFieldsController extends Controller
         $model = new CategoriesFields();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->categories_fields_id]);
+            return $this->redirect(['categories/view', 'id' => $model->category_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -80,12 +80,12 @@ class CategoriesFieldsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id,$cat)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->categories_fields_id]);
+            return $this->redirect(['categories/view', 'id' => $cat]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -99,11 +99,10 @@ class CategoriesFieldsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($id,$cat)
     {
         $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        return $this->redirect(['categories/view','id' => $cat]);
     }
 
     /**

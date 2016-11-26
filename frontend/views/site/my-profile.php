@@ -128,51 +128,7 @@ $Wcount=Wishlists::find()->where(['user_id'=>$model->id])->count();
 							
 						</div><!-- user-pro-edit -->
 					</div><!-- col -->
-				
-					<div class="col-sm-4 text-center">
-						<div class="recommended-cta">					
-							<div class="cta">
-								<!-- single-cta -->						
-								<div class="single-cta">
-								<a href="index.php?r=site/ask-dubarji">
-									<!-- cta-icon -->
-									<div class="cta-icon icon-secure">
-										<img src="images/icon/old/ask.png" alt="Icon" class="img-responsive">
-									</div><!-- cta-icon -->
 
-									<h4>Ask Dubarji</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-									</a>
-								</div><!-- single-cta -->
-
-								<!-- single-cta -->
-								<div class="single-cta">
-									<!-- cta-icon -->
-									<div class="cta-icon icon-support">
-										<img src="images/icon/old/housing.png" alt="Icon" class="img-responsive">
-									</div><!-- cta-icon -->
-
-									<h4>Donate</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-								</div><!-- single-cta -->
-							
-
-								<!-- single-cta -->
-								<div class="single-cta">
-								<a href="index.php?r=site/suggestions">
-									<!-- cta-icon -->
-									<div class="cta-icon icon-trading">
-										<img src="images/icon/old/Suggestions.png" alt="Icon" class="img-responsive">
-									</div><!-- cta-icon -->
-
-									<h4>Suggestions</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-									</a>
-
-								</div><!-- single-cta -->
-						</div><!-- cta -->
-					</div><!-- recommended-cta-->
-					</div><!--col -->
 				</div><!-- row -->	
 			</div>	<!--profile section -->			
 		</div><!-- container -->
