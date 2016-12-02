@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<a class="btn btn-success" href="index.php?r=cms-item/custom&cat=<?= $model->cms_category_id ?>">Create New stories</a>
+<a class="btn btn-success" href="index.php?r=cms-item/custom&cat=<?= $model->cms_category_id ?>">Create New <?= $this->title ?></a>
 
 <table class="table table-striped" style="margin-top:2%;">
     <thead>
@@ -74,10 +74,12 @@ foreach ($CmsCategoryField as $item){
     $i = 1;
     foreach ($items as $item){
         echo '<tr>';
+        $item_id = $item[0]['cms_item_id'];
         echo '<td>'.($item[0]['cms_item_id']).'</td>';
         foreach ($item as $value) {
             echo '<td>'.$value['cms_value'].'</td>';
         }
+        echo '<td><a href="index.php?r=cms-item/delete&id='.$item_id.'&cat='.$model->cms_category_id.' " ><span class="glyphicon glyphicon-trash"></span></a></td>';
         echo '</tr>';
         $i++;
     }

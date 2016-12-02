@@ -30,7 +30,7 @@ class CmsItemController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                     'custom' => ['GET']
                 ],
             ],
@@ -144,11 +144,19 @@ class CmsItemController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($id , $cat)
     {
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+      $model = Yii::$app->db->createCommand('DELETE FROM cms_values WHERE cms_item_id=:cms_item_id');
+      $model->bindParam(':cms_item_id', $id);
+      $model->execute();
+
+      $model = Yii::$app->db->createCommand('DELETE FROM cms_item WHERE cms_item_id=:cms_item_id');
+      $model->bindParam(':cms_item_id', $id);
+      $model->execute();
+
+
+      return $this->redirect(['cms-category/view','id'=>$cat]);
     }
 
     /**
