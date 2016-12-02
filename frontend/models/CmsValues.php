@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use backend\models\CmsCategoryField;
 
 /**
  * This is the model class for table "cms_values".
@@ -32,7 +33,7 @@ class CmsValues extends \yii\db\ActiveRecord
             [['cms_item_id', 'cms_category_field_id'], 'integer'],
             [['cms_value'], 'string'],
             [['cms_item_id'], 'exist', 'skipOnError' => true, 'targetClass' => CmsItem::className(), 'targetAttribute' => ['cms_item_id' => 'cms_item_id']],
-            [['cms_category_field_id'], 'exist', 'skipOnError' => true, 'targetClass' => CmsCategoryFields::className(), 'targetAttribute' => ['cms_category_field_id' => 'cms_category_field_id']],
+            [['cms_category_field_id'], 'exist', 'skipOnError' => true, 'targetClass' => CmsCategoryField::className(), 'targetAttribute' => ['cms_category_field_id' => 'cms_category_field_id']],
         ];
     }
 

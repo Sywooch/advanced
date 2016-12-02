@@ -8,12 +8,12 @@ use yii\widgets\LinkPager;?>
 		<div class="container">
 
 			<div class="banner">
-			
+
 				<!-- banner-form -->
 				<div class="banner-form banner-form-full">
 					<form action="#">
 						<!-- category-change -->
-						<div class="dropdown category-dropdown">						
+						<div class="dropdown category-dropdown">
 							<a data-toggle="dropdown" href="#"><span class="change-text">Select Category</span> <i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu category-change">
 								<li><a  href="#">Fashion & Beauty</a></li>
@@ -21,22 +21,22 @@ use yii\widgets\LinkPager;?>
 								<li><a href="#">Electronics & Gedgets</a></li>
 								<li><a href="#">Real Estate</a></li>
 								<li><a href="#">Sports & Games</a></li>
-							</ul>								
+							</ul>
 						</div><!-- category-change -->
 
 						<!-- language-dropdown -->
-						<div class="dropdown category-dropdown language-dropdown ">						
+						<div class="dropdown category-dropdown language-dropdown ">
 							<a data-toggle="dropdown" href="#"><span class="change-text">Select Countray</span> <i class="fa fa-angle-down"></i></a>
 							<ul class="dropdown-menu  language-change">
 								<li><a href="#">United Kingdom</a></li>
 								<li><a href="#">United States</a></li>
 								<li><a href="#">China</a></li>
 								<li><a href="#">Russia</a></li>
-							</ul>								
+							</ul>
 						</div><!-- language-dropdown -->
-					
+
 						<input type="text" class="form-control" placeholder="Type Your key word">
-						<button type="submit" class="form-control" value="Search">Search</button>
+						<button type="submit" class="form-control categories-search" value="Search">Search</button>
 					</form>
 				</div><!-- banner-form -->
 			</div>
@@ -45,19 +45,19 @@ use yii\widgets\LinkPager;?>
 				<ol class="breadcrumb">
 					<li><a href="index.php">Home</a></li>
 					<li><?php echo $model->english_name; ?> </li>
-				</ol><!-- breadcrumb -->						
+				</ol><!-- breadcrumb -->
 				<h2 class="title"><?php echo $model->english_name; ?></h2>
 			</div>
-			
-	
-			<div class="category-info">	
+
+
+			<div class="category-info">
 				<div class="row">
 					<!-- accordion-->
 					<div class="col-md-3 col-sm-4">
 						<div class="accordion">
 							<!-- panel-group -->
 							<div class="panel-group" id="accordion">
-							 	
+
 								<!-- panel -->
 								<div class="panel-default panel-faq">
 									<!-- panel-heading -->
@@ -102,32 +102,32 @@ use yii\widgets\LinkPager;?>
 
 								<div class="advertisement text-center">
 										<a href="#"><img src="http://placehold.it/300x250" alt="" class="img-responsive"></a>
-									</div> 
+									</div>
 							 </div><!-- panel-group -->
 						</div>
 					</div><!-- accordion-->
 
 					<!-- recommended-ads -->
-					<div class="col-sm-9 col-md-9">				
+					<div class="col-sm-9 col-md-9">
 						<div class="section recommended-ads">
 							<!-- featured-top -->
 							<div class="featured-top">
 								<h4>Recommended Ads for You</h4>
 								<div class="dropdown pull-right">
-								
+
 								<!-- category-change -->
 								<div class="dropdown category-dropdown">
-									<h5>Sort by:</h5>						
+									<h5>Sort by:</h5>
 									<a data-toggle="dropdown" href="#"><span class="change-text">Popular</span><i class="fa fa-caret-square-o-down"></i></a>
 									<ul class="dropdown-menu category-change">
 										<li><a href="#">Featured</a></li>
 										<li><a href="#">Newest</a></li>
 										<li><a href="#">All</a></li>
 										<li><a href="#">Bestselling</a></li>
-									</ul>								
-								</div><!-- category-change -->														
-								</div>							
-							</div><!-- featured-top -->	
+									</ul>
+								</div><!-- category-change -->
+								</div>
+							</div><!-- featured-top -->
 
 							<?php
 								foreach ($ads as $ad ) {
@@ -136,6 +136,8 @@ use yii\widgets\LinkPager;?>
 										->one();
 									$category = \common\models\Categories::find()->where(['category_id' => $ad['category_id']])->one();
 									$category = $category['english_name'];
+									Yii::$app->formatter->locale = 'en-GB';
+
 									echo '<!-- ad-item -->
 							<div class="ad-item row">
 								<!-- item-image -->
@@ -145,7 +147,7 @@ use yii\widgets\LinkPager;?>
 										<span class="featured-ad">Featured</span>
 									</div><!-- item-image -->
 								</div>
-								
+
 								<!-- rending-text -->
 								<div class="item-info col-sm-8">
 									<!-- ad-info -->
@@ -154,18 +156,17 @@ use yii\widgets\LinkPager;?>
 										<div class="item-cat">
 											<span>' . $category . ' :  </span>
 											<span>' . $ad['description'] . '  </span>
-										</div>										
+										</div>
 									</div><!-- ad-info -->
-									
+
 									<!-- ad-meta -->
 									<div class="ad-meta">
 										<div class="meta-content">
-											<span class="dated"><a href="#">Date: ' . $ad['created_at'] . '</a></span>
-										</div>										
+											<span class="dated"><a href="#">' . Yii::$app->formatter->asDate($ad['created_at']) . '</a></span>
+										</div>
 										<!-- item-info-right -->
-										<div class="user-option pull-right">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="' . $ad['city'] . ',' . $country['country_english_name'] . '"><i class="fa fa-map-marker"></i> </a>
-											<a class="online" href="#" data-toggle="tooltip" data-placement="top" title="Individual"><i class="fa fa-user"></i> </a>											
+										<div class="user-option pull-right" style="margin-top: 10;">
+												<a href="#" data-toggle="tooltip" data-placement="top" title="'.$ad['city'].','.$country['country_english_name'].'"><i class="fa fa-map-marker"></i></a>
 										</div><!-- item-info-right -->
 									</div><!-- ad-meta -->
 								</div><!-- item-info -->
@@ -181,11 +182,11 @@ use yii\widgets\LinkPager;?>
 						</div>
 					</div><!-- recommended-ads -->
 
-				</div>	
+				</div>
 			</div>
 		</div><!-- container -->
 	</section><!-- main -->
-	
-	
-	
+
+
+
 <?php include('include/footer.php'); ?>

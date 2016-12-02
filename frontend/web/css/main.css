@@ -657,6 +657,7 @@ footer{background-color: #e6e6e6}
 .ad-info .item-cat {
 	font-size:14px;
 	color:#a0a0a0;
+	margin-top: 10;
 }
 
 .ad-info .item-cat a{
@@ -1602,6 +1603,7 @@ transform: scale(1.05) rotate(2deg);
 .banner-form-full.banner-form .form-control,
 .banner-form-full.banner-form .category-dropdown {
 	width:20%;
+	margin-top: 10;
 }
 
 .banner-form-full.banner-form input {
@@ -3388,4 +3390,52 @@ a.btn {
 
 .link-active {
 	color: #e7412c !important;
+}
+
+.form-group{
+	margin-bottom: 10px !important;
+}
+
+
+
+
+
+
+@media (max-width:992px)
+{ .category-ad{
+	width:720px !important;
+	}
+	.banner-form button.form-control.search-index
+	{ height: 48px !important; }
+}
+
+@media (min-width: 1201px){
+.category-ad {
+    width: 1140px !important ;
+}
+}
+
+@media (max-width: 1401px){}
+.category-ad {
+    width: 1140px ;
+}
+.banner-form button.form-control.categories-search
+{ height: 67px !important;
+	margin-bottom: 1px !important;
+	margin-top: 1px !important;
+
+ }
+}
+
+
+@media (max-width: 1601px){}
+.category-ad {
+    width: 940px ;
+}
+.banner-form button.form-control.categories-search
+{ height: 67px !important;
+	margin-bottom: 1px !important;
+	margin-top: 1px !important;
+
+ }
 }

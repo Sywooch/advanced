@@ -13,36 +13,27 @@
 					</div><!-- footer-widget -->
 					<div class="col-sm-1">
 					</div><!-- footer-widget -->
-					
+
 					<!-- footer-widget -->
 					<div class="col-sm-2">
 						<div class="footer-widget">
 							<h3>QUICK LINKS</h3>
 							<ul>
-								
-								<li><a href="index.php?r=site/about-us">About Us</a></li>
-								<li><a href="index.php?r=site/contact-us">Contact Us</a></li>
-								<li><a href="index.php?r=site/mission">Our Mission</a></li>
-								<li><a href="index.php?r=site/vision">Our vision</a></li>
+
+								<li><a href="index.php?r=about">About Us</a></li>
+								<li><a href="index.php?r=about">Contact Us</a></li>
+								<li><a href="index.php?r=about">Our Mission</a></li>
+								<li><a href="index.php?r=about">Our vision</a></li>
 							</ul>
 						</div>
 					</div><!-- footer-widget -->
-					<div class="col-sm-2">
-						<div class="footer-widget">
-							<h3>&nbsp;</h3>
-							<ul>
-								<li><a href="#">Jobs</a></li>
-								<li><a href="#">Housing</a></li>
-								<li><a href="#">Investment</a></li>
-								<li><a href="#">Education</a></li>
-							</ul>
-						</div>
+					<div class="col-sm-1">
+
 					</div><!-- footer-widget -->
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<div class="footer-widget">
 							<h3>SUPPORT</h3>
 							<ul>
-								<li><a href="index.php?r=site/faqs">FAQs</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="index.php?r=site/ask-dubarji">Ask Dubarji</a></li>
@@ -54,11 +45,11 @@
 			</div><!-- container -->
 		</section><!-- footer-top -->
 
-		
+
 		<div class="footer-bottom clearfix text-center">
 		</div><!-- footer-bottom -->
 	</footer><!-- footer -->
-	
+
 
      <!-- JS -->
     <script src="js/jquery.min.js"></script>

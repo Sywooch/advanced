@@ -38,7 +38,7 @@ include('include/header.php'); ?>
                                 <!-- category-change -->
 
                                 <input type="text" name="search" class="form-control" placeholder="What are you looking for...?">
-                                <button style="height: 49px;" type="submit" class="form-control" value="Search">Search</button>
+                                <button style="height: 49px;" type="submit" class="form-control search-index" value="Search">Search</button>
                             <?php ActiveForm::end(); ?>
                         </div><!-- banner-form -->
 

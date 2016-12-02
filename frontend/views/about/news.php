@@ -8,38 +8,6 @@ include('about-include/header.php');
     <h1 class="page-title">News</h1>
     <section class="two-columns clearfix">
         <div class="secondary-content narrow">
-            <div class="responsive-nav">
-                <form class="clearfix">
-                    <div class="custom-select" id="sel-category">
-                        <select name="sel-category" class="chosen-select">
-                            <option value="">Select category</option>
-                            <option value="http://newsroom.fb.com/news/category/company-news/">
-                                Company News </option>
-                            <option value="http://newsroom.fb.com/news/category/events/">
-                                Events </option>
-                            <option value="http://newsroom.fb.com/news/category/news-feed-fyi/">
-                                News Feed FYI </option>
-                            <option value="http://newsroom.fb.com/news/category/product-news/">
-                                Product News </option>
-                            <option value="http://newsroom.fb.com/news/category/qa-with-mark-2/">
-                                Q&amp;A with Mark </option>
-                            <option value="http://newsroom.fb.com/news/category/internet-org/">
-                                Internet.org </option>
-                            <option value="http://newsroom.fb.com/news/category/trends/">
-                                Trends </option>
-                            <option value="http://newsroom.fb.com/news/category/search-fyi/">
-                                Search FYI </option>
-                        </select>
-                    </div>
-                    <div class="custom-select" id="sel-year">
-                        <select name="sel-year" class="chosen-select">
-                            <option value="">Select year</option>
-                            <option value="http://newsroom.fb.com/news/2016">2016</option>
-                            <option value="http://newsroom.fb.com/news/2015">2015</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
             <aside class="no-card sidebar">
                 <div class="sidebar-widget">
                     <h2>Contact Us</h2>
@@ -48,7 +16,31 @@ include('about-include/header.php');
                 <!--end:.sidebar-widget-->
                 <div class="sidebar-widget">
                     <h2>Categories</h2>
-                    <ul>
+
+                    <?php
+                    $categories = array();
+                      foreach ($news as $new) {
+                        if(!isset($new[3]['category']))
+                          $category = "";
+                        else
+                          $category = $new[3]['category'];
+
+                          if(!in_array($category ,$categories ))
+                            array_push($categories , $category);
+                      }
+                      echo "<ul>";
+
+                      foreach ($categories as $cat) {
+                        echo '  <li class="menu-item-object-category">
+                                  <a href="#">
+                                    '.$cat.'
+          						            </a>
+                                </li>';
+
+                      }
+
+                     ?>
+                    <!-- <ul>
                         <li class="
 										menu-item-object-category
 																			">
@@ -97,10 +89,10 @@ include('about-include/header.php');
                             <a href="category/search-fyi/index.html">
                                 Search FYI									</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <!--end:.sidebar-widget-->
-                <div class="sidebar-widget">
+                <!-- <div class="sidebar-widget">
                     <h2>Archive</h2>
                     <ul>
                         <li><a href="2016/index.html">2016</a></li>
@@ -108,7 +100,7 @@ include('about-include/header.php');
                     </ul>
                 </div>
                 <!--end:.sidebar-widget-->
-                <div class="sidebar-widget featured-news">
+                <!-- <div class="sidebar-widget featured-news">
                     <h2>Featured News</h2>
                     <div class="sidebar-featured-news-item">
                         <a href="2015/04/introducing-video-calling-in-messenger/index.html">
@@ -121,7 +113,7 @@ include('about-include/header.php');
                         </div>
                     </div>
                     <!--end:.home-recent-news-item-->
-                    <div class="sidebar-featured-news-item">
+                    <!-- <div class="sidebar-featured-news-item">
                         <a href="2015/04/introducing-hello/index.html">
                             <img width="600" height="250" src="../../fbnewsroomus.files.wordpress.com/2015/04/newsroom-01-coverimageaf90.png?w=600" class="attachment-thumbnail size-thumbnail wp-post-image" alt="NewsRoom-01-CoverImage" srcset="https://fbnewsroomus.files.wordpress.com/2015/04/newsroom-01-coverimage.png?w=600 600w, https://fbnewsroomus.files.wordpress.com/2015/04/newsroom-01-coverimage.png?w=1200 1200w, https://fbnewsroomus.files.wordpress.com/2015/04/newsroom-01-coverimage.png?w=300 300w, https://fbnewsroomus.files.wordpress.com/2015/04/newsroom-01-coverimage.png?w=768 768w, https://fbnewsroomus.files.wordpress.com/2015/04/newsroom-01-coverimage.png?w=1024 1024w" sizes="(max-width: 600px) 100vw, 600px" /> </a>
                         <h3><a href="2015/04/introducing-hello/index.html">Introducing Hello</a></h3>
@@ -132,124 +124,70 @@ include('about-include/header.php');
                         </div>
                     </div>
                     <!--end:.home-recent-news-item-->
-                </div>
+                <!--</div> -->
                 <!--end:.sidebar-widget-->
             </aside>
             <!--end:.no-card-->
         </div>
         <div class="primary-content wide" id="main">
-            <div class="card post article-summary" id="post-6744">
-                <div class="card-padding clearfix">
-                    <header class="clearfix">
-                        <p class="date">October 28, 2016</p>
-                        <h2><a href="2016/10/preparing-for-the-us-election-2016/index.html">Preparing for the US Election 2016</a></h2>
-                    </header>
-                    <div class="featured-image">
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html">
-                            <img width="960" height="715" src="../../fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x2289.png?w=960" class="attachment-large size-large wp-post-image" alt="elections-feature-image_2x" srcset="https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=960 960w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png 1920w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=537 537w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=300 300w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=768 768w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=1024 1024w" sizes="(max-width: 960px) 100vw, 960px" /> </a>
-                    </div>
-                    <div class="excerpt">
-                        <p>We&#8217;re introducing a new feature that shows you what’s on the ballot — from candidates to ballot initiatives.</p>
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html" title="Permalink to Preparing for the US Election 2016">Read more</a>
-                    </div>
-                    <div class="entry-meta">
-                        <div class="entry-category">
-                            <span class="entry-meta-label">Category: </span>
-                            <a href="category/product-news/index.html" title="Product News">Product News</a>
-                        </div>
-                    </div>
-                    <!--end:.entry-meta-->
-                </div>
-                <!--end:.card-padding-->
-            </div>
-            <!--end:.card.article-summary-->
 
-            <div class="card post article-summary" id="post-6744">
-                <div class="card-padding clearfix">
-                    <header class="clearfix">
-                        <p class="date">October 28, 2016</p>
-                        <h2><a href="2016/10/preparing-for-the-us-election-2016/index.html">Preparing for the US Election 2016</a></h2>
-                    </header>
-                    <div class="featured-image">
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html">
-                            <img width="960" height="715" src="../../fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x2289.png?w=960" class="attachment-large size-large wp-post-image" alt="elections-feature-image_2x" srcset="https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=960 960w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png 1920w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=537 537w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=300 300w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=768 768w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=1024 1024w" sizes="(max-width: 960px) 100vw, 960px" /> </a>
-                    </div>
-                    <div class="excerpt">
-                        <p>We&#8217;re introducing a new feature that shows you what’s on the ballot — from candidates to ballot initiatives.</p>
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html" title="Permalink to Preparing for the US Election 2016">Read more</a>
-                    </div>
-                    <div class="entry-meta">
-                        <div class="entry-category">
-                            <span class="entry-meta-label">Category: </span>
-                            <a href="category/product-news/index.html" title="Product News">Product News</a>
-                        </div>
-                    </div>
-                    <!--end:.entry-meta-->
-                </div>
-                <!--end:.card-padding-->
-            </div>
-            <!--end:.card.article-summary-->
-            <div class="card post article-summary" id="post-6744">
-                <div class="card-padding clearfix">
-                    <header class="clearfix">
-                        <p class="date">October 28, 2016</p>
-                        <h2><a href="2016/10/preparing-for-the-us-election-2016/index.html">Preparing for the US Election 2016</a></h2>
-                    </header>
-                    <div class="featured-image">
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html">
-                            <img width="960" height="715" src="../../fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x2289.png?w=960" class="attachment-large size-large wp-post-image" alt="elections-feature-image_2x" srcset="https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=960 960w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png 1920w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=537 537w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=300 300w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=768 768w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=1024 1024w" sizes="(max-width: 960px) 100vw, 960px" /> </a>
-                    </div>
-                    <div class="excerpt">
-                        <p>We&#8217;re introducing a new feature that shows you what’s on the ballot — from candidates to ballot initiatives.</p>
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html" title="Permalink to Preparing for the US Election 2016">Read more</a>
-                    </div>
-                    <div class="entry-meta">
-                        <div class="entry-category">
-                            <span class="entry-meta-label">Category: </span>
-                            <a href="category/product-news/index.html" title="Product News">Product News</a>
-                        </div>
-                    </div>
-                    <!--end:.entry-meta-->
-                </div>
-                <!--end:.card-padding-->
-            </div>
-            <!--end:.card.article-summary-->
-            <div class="card post article-summary" id="post-6744">
-                <div class="card-padding clearfix">
-                    <header class="clearfix">
-                        <p class="date">October 28, 2016</p>
-                        <h2><a href="2016/10/preparing-for-the-us-election-2016/index.html">Preparing for the US Election 2016</a></h2>
-                    </header>
-                    <div class="featured-image">
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html">
-                            <img width="960" height="715" src="../../fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x2289.png?w=960" class="attachment-large size-large wp-post-image" alt="elections-feature-image_2x" srcset="https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=960 960w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png 1920w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=537 537w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=300 300w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=768 768w, https://fbnewsroomus.files.wordpress.com/2016/10/elections-feature-image_2x.png?w=1024 1024w" sizes="(max-width: 960px) 100vw, 960px" /> </a>
-                    </div>
-                    <div class="excerpt">
-                        <p>We&#8217;re introducing a new feature that shows you what’s on the ballot — from candidates to ballot initiatives.</p>
-                        <a href="2016/10/preparing-for-the-us-election-2016/index.html" title="Permalink to Preparing for the US Election 2016">Read more</a>
-                    </div>
-                    <div class="entry-meta">
-                        <div class="entry-category">
-                            <span class="entry-meta-label">Category: </span>
-                            <a href="category/product-news/index.html" title="Product News">Product News</a>
-                        </div>
-                    </div>
-                    <!--end:.entry-meta-->
-                </div>
-                <!--end:.card-padding-->
-            </div>
-            <!--end:.card.article-summary-->
+          <?php
+          Yii::$app->formatter->locale = 'en-GB';
 
-            <nav class="navigation paging-navigation" role="navigation">
-                <h1 class="screen-reader-text">Posts navigation</h1>
-                <div class="nav-links">
-                    <div class="nav-previous"><a href="page/2/index.html"><span class="meta-nav">&larr;</span> Older posts</a></div>
+          foreach ($news as $new) {
+
+
+
+                            if(!isset($new[0]['title']))
+                              $title = "";
+                            else
+                              $title = $new[0]['title'];
+
+                            if(!isset($new[2]['description']))
+                              $description = "";
+                            else
+                              $description = $new[2]['description'];
+
+                            if(!isset($new[1]['image']))
+                              $image = "";
+                            else
+                              $image = $new[1]['image'];
+
+                            if(!isset($new[3]['category']))
+                              $category = "";
+                            else
+                              $category = $new[3]['category'];
+
+          echo '
+            <div class="card post article-summary" >
+                <div class="card-padding clearfix">
+                    <header class="clearfix">
+                        <p class="date">'.Yii::$app->formatter->asDate($new[0]['date']).'</p>
+                        <h2><a href="#">'.$title.'</a></h2>
+                    </header>
+                    <div class="featured-image">
+                        <a href="#">
+                            <img width="960" height="715" src="'.$image.'" class="attachment-large size-large wp-post-image"/> </a>
+                    </div>
+                    <div class="excerpt">
+                        <p>'.$description.'</p>
+                        <a href="#" >Read more</a>
+                    </div>
+                    <div class="entry-meta">
+                        <div class="entry-category">
+                            <span class="entry-meta-label">Category: </span>
+                            <a href="category/product-news/index.html" title="Product News">'.$category.'</a>
+                        </div>
+                    </div>
+                    <!--end:.entry-meta-->
                 </div>
-                <!-- .nav-links -->
-            </nav>
-            <!-- .navigation -->
+                <!--end:.card-padding-->
+            </div>
+            ';
+          }
+            ?>
+
         </div>
-        <!--end:.primary-content.wide-->
     </section>
     <!-- Your Google Analytics Plugin is missing the tracking ID -->
 </div>

@@ -4,6 +4,10 @@ namespace backend\controllers;
 
 use Yii;
 use frontend\models\CmsCategory;
+use backend\models\CmsCategoryField;
+use frontend\models\CmsItem;
+use frontend\models\CmsValues;
+
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -17,6 +21,9 @@ class CmsItemController extends Controller
     /**
      * @inheritdoc
      */
+
+     public $enableCsrfValidation = false;
+
     public function behaviors()
     {
         return [
@@ -24,6 +31,7 @@ class CmsItemController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'custom' => ['GET']
                 ],
             ],
         ];
@@ -33,6 +41,8 @@ class CmsItemController extends Controller
      * Lists all CmsCategory models.
      * @return mixed
      */
+
+
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
@@ -42,6 +52,26 @@ class CmsItemController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+
+    public function actionCustom($cat)
+    {
+
+        $Fields = CmsCategoryField::find()->where(['cms_category_id'=>$cat])->all();
+        return $this->render('custom',[
+          'fields' => $Fields
+        ]);
+    }
+
+    public function actionNew(){
+      $dataProvider = new ActiveDataProvider([
+          'query' => CmsCategory::find(),
+      ]);
+
+      return $this->render('index', [
+          'dataProvider' => $dataProvider,
+      ]);
     }
 
     /**
@@ -63,15 +93,30 @@ class CmsItemController extends Controller
      */
     public function actionCreate()
     {
-        $model = new CmsCategory();
+      $model = new CmsItem();
+      $model->cms_category_id = $_POST['category'];
+      $model->date_time =  date('Y-m-d H:i:s');
+      $model->save();
+       $i = 0;
+       $total = count($_POST);
+       $allowed = $total - 3 ;
+      while( list( $field, $value ) = each( $_POST )) {
+        if ($i <= $allowed)
+        {
+         $model2 = new CmsValues();
+         $model2->cms_item_id = $model->cms_item_id;
+         $model2->cms_category_field_id = explode("_",$field)[1];
+         $model2->cms_value = $value;
+         $model2->save();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->cms_category_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+
+         $i++;
+       }else {
+         continue;
+       }
+       }
+
+      return $this->redirect(['cms-category/view','id'=>$model->cms_category_id]);
     }
 
     /**

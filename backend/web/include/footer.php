@@ -13,7 +13,7 @@
 					</div><!-- footer-widget -->
 					<div class="col-sm-1">
 					</div><!-- footer-widget -->
-					
+
 					<!-- footer-widget -->
 					<div class="col-sm-2">
 						<div class="footer-widget">
@@ -53,12 +53,12 @@
 			</div><!-- container -->
 		</section><!-- footer-top -->
 
-		
+
 		<div class="footer-bottom clearfix text-center">
 		</div><!-- footer-bottom -->
 	</footer><!-- footer -->
-	
-	
+
+
      <!-- JS -->
     <script src="js/jquery.min.js"></script>
     <script src="js/modernizr.min.js"></script>
@@ -70,7 +70,7 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/smoothscroll.min.js"></script>
     <script src="js/scrollup.min.js"></script>
-    <script src="js/price-range.js"></script>    
+    <script src="js/price-range.js"></script>
     <script src="js/custom.js"></script>
   </body>
 </html>

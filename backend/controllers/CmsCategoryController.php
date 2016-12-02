@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\CmsCategoryField;
+use yii\db\ActiveQuery;
 
 /**
  * CmsCategoryController implements the CRUD actions for CmsCategory model.
@@ -54,9 +55,27 @@ class CmsCategoryController extends Controller
     {
 
       $cmsCategoriesFields = CmsCategoryField::find()->where(['cms_category_id'=>$id])->all();
+
+      $rows = (new \yii\db\Query())
+          ->select(['*'])
+          ->from('cms_item')
+          ->join('INNER JOIN', 'cms_values', 'cms_values.cms_item_id = cms_item.cms_item_id')
+          ->where(['cms_category_id' => $id])
+          ->all();
+
+      $returnedValue = array();
+      foreach ($rows as $row) {
+        if(!isset($returnedValue[$row['cms_item_id']]))
+          $returnedValue[$row['cms_item_id']]  = array();
+          array_push($returnedValue[$row['cms_item_id']],$row);
+      }
+
+
+
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'CmsCategoryField' => $cmsCategoriesFields
+            'CmsCategoryField' => $cmsCategoriesFields,
+            'items'=> $returnedValue
         ]);
     }
 

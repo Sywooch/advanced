@@ -57,9 +57,9 @@ a {
 }
 
 .featured-carousel .slide-image {
-    margin-left: 522px;
+    margin-left: 560px;
     position: relative;
-    height: 464px;
+    height: 465px;
     background-size: cover;
     background-position: 50% 50%;
 }
@@ -72,4 +72,16 @@ a {
     padding: 40px 48px 0;
     overflow: hidden;
     width: 426px;
+}
+
+#company-hero h1 {
+    color: #141924;
+    padding-top: 15%;
+    margin-bottom: 24px;
+}
+
+#company-hero p {
+    color: #141924;
+    margin: 0;
+    padding: 0 10%;
 }
